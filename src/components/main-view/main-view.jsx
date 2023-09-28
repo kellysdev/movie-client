@@ -45,11 +45,11 @@ const MainView = () => {
   }
 
   if (movies.length === 0) {
-    return <div>The list is empty!</div>;
+    return <div>No movies in the list!</div>;
   }
 
   return (
-    <div>
+    <>
       {movies.map((movie) => {
         <MovieCard 
           key={movie.Title}
@@ -59,7 +59,7 @@ const MainView = () => {
           }}
         />
       })}
-    </div>
+    </>
   );
 
 };

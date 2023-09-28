@@ -27367,13 +27367,13 @@ const MainView = ()=>{
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "The list is empty!"
+        children: "No movies in the list!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
         lineNumber: 48,
         columnNumber: 12
     }, undefined);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: movies.map((movie)=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                 movie: movie,
@@ -27386,11 +27386,7 @@ const MainView = ()=>{
                 columnNumber: 9
             }, undefined);
         })
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 52,
-        columnNumber: 5
-    }, undefined);
+    }, void 0, false);
 };
 _s(MainView, "vZjse75IFEJt8Wb2K2xFtIJs3w0=");
 _c = MainView;
