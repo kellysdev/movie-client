@@ -27373,7 +27373,7 @@ const MainView = ()=>{
         lineNumber: 48,
         columnNumber: 12
     }, undefined);
-    else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: movies.map((movie)=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                 movie: movie,
@@ -27382,11 +27382,15 @@ const MainView = ()=>{
                 }
             }, movie.Title, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 53,
-                columnNumber: 11
+                lineNumber: 54,
+                columnNumber: 9
             }, undefined);
         })
-    }, void 0, false);
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 52,
+        columnNumber: 5
+    }, undefined);
 };
 _s(MainView, "vZjse75IFEJt8Wb2K2xFtIJs3w0=");
 _c = MainView;
