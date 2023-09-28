@@ -51,7 +51,7 @@ const MainView = () => {
       <div>
         {movies.map((movie) => {
           <MovieCard 
-            key={movie.Id}
+            key={movie.Title}
             movie={movie}
             onMovieClick={(newSelectedMovie) => {
               setSelectedMovie(newSelectedMovie);
