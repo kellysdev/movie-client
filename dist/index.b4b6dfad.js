@@ -2943,6 +2943,7 @@ $parcel$ReactRefreshHelpers$98a3.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
 var _client = require("react-dom/client");
 var _mainView = require("./components/main-view/main-view");
 var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
@@ -2952,7 +2953,7 @@ var _indexScss = require("./index.scss");
 const MyFlixApplication = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainViewDefault.default), {}, void 0, false, {
         fileName: "src/index.jsx",
-        lineNumber: 9,
+        lineNumber: 10,
         columnNumber: 10
     }, undefined);
 };
@@ -2961,10 +2962,16 @@ _c = MyFlixApplication;
 const container = document.querySelector("#root");
 const root = (0, _client.createRoot)(container);
 // Tells React to render your app in the root DOM element
-root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(MyFlixApplication, {}, void 0, false, {
+root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _react.StrictMode), {
+    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(MyFlixApplication, {}, void 0, false, {
+        fileName: "src/index.jsx",
+        lineNumber: 20,
+        columnNumber: 5
+    }, undefined)
+}, void 0, false, {
     fileName: "src/index.jsx",
-    lineNumber: 17,
-    columnNumber: 13
+    lineNumber: 19,
+    columnNumber: 3
 }, undefined));
 var _c;
 $RefreshReg$(_c, "MyFlixApplication");

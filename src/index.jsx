@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import MainView from "./components/main-view/main-view";
 
@@ -14,4 +15,8 @@ const container = document.querySelector("#root");
 const root = createRoot(container);
 
 // Tells React to render your app in the root DOM element
-root.render(<MyFlixApplication />);
+root.render(
+  <StrictMode>
+    <MyFlixApplication />
+  </StrictMode>
+);
