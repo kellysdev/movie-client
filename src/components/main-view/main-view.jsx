@@ -57,7 +57,7 @@ const MainView = () => {
           onMovieClick={(newSelectedMovie) => {
             setSelectedMovie(newSelectedMovie);
           }}
-        />
+         />
       })}
     </>
   );
