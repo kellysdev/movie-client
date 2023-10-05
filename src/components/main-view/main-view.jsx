@@ -50,7 +50,7 @@ const MainView = () => {
 
   return (
     <>
-      {movies.map((movie) => {
+      {movies.map((movie) => (
         <MovieCard 
           key={movie.Id}
           movie={movie}
@@ -58,7 +58,7 @@ const MainView = () => {
             setSelectedMovie(newSelectedMovie);
           }}
          />
-      })}
+      ))}
     </>
   );
 
