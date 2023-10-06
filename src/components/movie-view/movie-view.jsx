@@ -17,7 +17,7 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>{movie.Director.Name}</span>
         <br />
         <span>Actors: </span>
-        <span>{movie.Actors.map((actor) => actor.Name).join(", ")}</span>
+        <span>{movie.Actors.join(", ")}</span>
       </div>
       <button onClick={onBackClick}>Back</button>
     </div>
