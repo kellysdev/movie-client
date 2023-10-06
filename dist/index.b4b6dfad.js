@@ -27186,19 +27186,6 @@ const MainView = ()=>{
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
-            console.log("This is data", data);
-            // const moviesFromApi = data((doc) => {
-            //   return {
-            //     _id: doc.key,
-            //     ImagePath: doc.ImagePath,
-            //     Title: doc.Title,
-            //     ReleaseDate: doc.ReleaseDate,
-            //     Description: doc.Description,
-            //     Genre: doc.Genre,
-            //     Director: doc.Director,
-            //     Actors: doc.Actors
-            //   };
-            // });
             setMovies(data);
         });
     }, []);
@@ -27207,14 +27194,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 34,
+        lineNumber: 18,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "No movies in the list!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 39,
+        lineNumber: 23,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -27225,7 +27212,7 @@ const MainView = ()=>{
                 }
             }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 45,
+                lineNumber: 29,
                 columnNumber: 9
             }, undefined))
     }, void 0, false);
