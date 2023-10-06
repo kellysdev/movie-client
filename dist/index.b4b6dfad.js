@@ -27186,19 +27186,20 @@ const MainView = ()=>{
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
-            const moviesFromApi = data.data.map((doc)=>{
-                return {
-                    _id: doc.key,
-                    ImagePath: doc.ImagePath,
-                    Title: doc.Title,
-                    ReleaseDate: doc.ReleaseDate,
-                    Description: doc.Description,
-                    Genre: doc.Genre,
-                    Director: doc.Director,
-                    Actors: doc.Actors
-                };
-            });
-            setMovies(moviesFromApi);
+            console.log("This is data", data);
+            // const moviesFromApi = data((doc) => {
+            //   return {
+            //     _id: doc.key,
+            //     ImagePath: doc.ImagePath,
+            //     Title: doc.Title,
+            //     ReleaseDate: doc.ReleaseDate,
+            //     Description: doc.Description,
+            //     Genre: doc.Genre,
+            //     Director: doc.Director,
+            //     Actors: doc.Actors
+            //   };
+            // });
+            setMovies(data);
         });
     }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27206,14 +27207,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 33,
+        lineNumber: 34,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "No movies in the list!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 38,
+        lineNumber: 39,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -27222,9 +27223,9 @@ const MainView = ()=>{
                 onMovieClick: (newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);
                 }
-            }, movie.Id, false, {
+            }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 44,
+                lineNumber: 45,
                 columnNumber: 9
             }, undefined))
     }, void 0, false);
@@ -27279,7 +27280,7 @@ MovieCard.propTypes = {
         Director: (0, _propTypesDefault.default).shape({
             Name: (0, _propTypesDefault.default).string,
             Bio: (0, _propTypesDefault.default).string,
-            Birth: (0, _propTypesDefault.default).instanceOf(Date)
+            Birth: (0, _propTypesDefault.default).string
         }),
         Actors: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).string)
     }).isRequired,
@@ -28271,7 +28272,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.Genre
+                        children: movie.Genre.Name
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 15,
@@ -28290,7 +28291,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.Director
+                        children: movie.Director.Name
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 18,
@@ -28309,7 +28310,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.Actors
+                        children: movie.Actors.map((actor)=>actor.Name)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 21,

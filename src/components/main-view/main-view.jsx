@@ -11,20 +11,21 @@ const MainView = () => {
     fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies")
     .then((response) => response.json())
     .then((data) => {
-      const moviesFromApi = data.data.map((doc) => {
-        return {
-          _id: doc.key,
-          ImagePath: doc.ImagePath,
-          Title: doc.Title,
-          ReleaseDate: doc.ReleaseDate,
-          Description: doc.Description,
-          Genre: doc.Genre,
-          Director: doc.Director,
-          Actors: doc.Actors
-        };
-      });
+      console.log("This is data", data)
+      // const moviesFromApi = data((doc) => {
+      //   return {
+      //     _id: doc.key,
+      //     ImagePath: doc.ImagePath,
+      //     Title: doc.Title,
+      //     ReleaseDate: doc.ReleaseDate,
+      //     Description: doc.Description,
+      //     Genre: doc.Genre,
+      //     Director: doc.Director,
+      //     Actors: doc.Actors
+      //   };
+      // });
 
-      setMovies(moviesFromApi);
+      setMovies(data);
     });
   }, []);
 
@@ -42,7 +43,7 @@ const MainView = () => {
     <>
       {movies.map((movie) => (
         <MovieCard 
-          key={movie.Id}
+          key={movie._id}
           movie={movie}
           onMovieClick={(newSelectedMovie) => {
             setSelectedMovie(newSelectedMovie);
