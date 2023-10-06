@@ -27182,64 +27182,38 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            Id: 1,
-            Title: "Dune",
-            Description: "A noble family becomes embroiled in a war for control over the galaxy's most valuable asset while its heir becomes troubled by visions of a dark future.",
-            Genre: "Action",
-            Director: "Dennis Villeneuve",
-            ImagePath: "https://m.media-amazon.com/images/I/61QbqeCVm0L.jpg",
-            Featured: false,
-            Actors: [
-                "Timothee Chalamet",
-                "Rebecca Ferguson",
-                "Oscar Isaac"
-            ]
-        },
-        {
-            Id: 2,
-            Title: "Barbie",
-            Description: "Barbie suffers a crisis that leads her to question her world and her existence.",
-            Genre: "Comedy",
-            Director: "Greta Gerwig",
-            ImagePath: "https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
-            Featured: false,
-            Actors: [
-                "Margot Robbie",
-                "Ryan Gosling"
-            ]
-        },
-        {
-            Id: 3,
-            Title: "Howl's Moving Castle",
-            Description: "When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.",
-            Genre: "Animation",
-            Director: "Hayao Miyazaki",
-            ImagePath: "https://m.media-amazon.com/images/M/MV5BNmM4YTFmMmItMGE3Yy00MmRkLTlmZGEtMzZlOTQzYjk3MzA2XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
-            Featured: false,
-            Actors: [
-                "Emily Mortimer",
-                "Jean Simmons",
-                "Christian Bale",
-                "Billy Crystal"
-            ]
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    (0, _react.useEffect)(()=>{
+        fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
+            const moviesFromApi = data.data.map((doc)=>{
+                return {
+                    _id: doc.key,
+                    ImagePath: doc.ImagePath,
+                    Title: doc.Title,
+                    ReleaseDate: doc.ReleaseDate,
+                    Description: doc.Description,
+                    Genre: doc.Genre,
+                    Director: doc.Director,
+                    Actors: doc.Actors
+                };
+            });
+            setMovies(moviesFromApi);
+        });
+    }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 43,
+        lineNumber: 33,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "No movies in the list!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 48,
+        lineNumber: 38,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -27250,12 +27224,12 @@ const MainView = ()=>{
                 }
             }, movie.Id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 54,
+                lineNumber: 44,
                 columnNumber: 9
             }, undefined))
     }, void 0, false);
 };
-_s(MainView, "vZjse75IFEJt8Wb2K2xFtIJs3w0=");
+_s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
 _c = MainView;
 exports.default = MainView;
 var _c;

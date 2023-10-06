@@ -8,7 +8,24 @@ const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    fetch("");
+    fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies")
+    .then((response) => response.json())
+    .then((data) => {
+      const moviesFromApi = data.data.map((doc) => {
+        return {
+          _id: doc.key,
+          ImagePath: doc.ImagePath,
+          Title: doc.Title,
+          ReleaseDate: doc.ReleaseDate,
+          Description: doc.Description,
+          Genre: doc.Genre,
+          Director: doc.Director,
+          Actors: doc.Actors
+        };
+      });
+
+      setMovies(moviesFromApi);
+    });
   }, []);
 
   if (selectedMovie) {
