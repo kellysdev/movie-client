@@ -10,15 +10,18 @@ const MainView = () => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-  if (!token) {
-    return;
-  }
+    if (!token) {
+      return;
+    }
 
     fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies", {
       headers: {Authorization: `Bearer ${token}`}
     })
     .then((response) => response.json())
-    .then((data) => {setMovies(data);});
+    .then((data) => {
+      console.log(data);
+      setMovies(data);
+    });
   }, [token]);
 
   if (!user) {
