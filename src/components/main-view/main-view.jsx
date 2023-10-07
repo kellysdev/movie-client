@@ -7,15 +7,29 @@ const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
-    fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies")
+  if (!token) {
+    return;
+  }
+
+    fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies", {
+      headers: {Authorization: `Bearer ${token}`}
+    })
     .then((response) => response.json())
     .then((data) => {setMovies(data);});
-  }, []);
+  }, [token]);
 
   if (!user) {
-    return <LoginView onLoggedIn={(user) => setUser(user)} />;
+    return (
+      <LoginView 
+        onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+        }}
+      />
+    );
   }
 
   if (selectedMovie) {
@@ -39,7 +53,7 @@ const MainView = () => {
           }}
          />
       ))}
-      <button onClick={() => {setUser(null); }}>Logout</button>
+      <button onClick={() => {setUser(null); setToken(null);}}>Logout</button>
     </>
   );
 

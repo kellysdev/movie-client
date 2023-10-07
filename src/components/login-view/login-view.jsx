@@ -14,16 +14,25 @@ export const LoginView = ({ onLoggedIn }) => {
       secret: Password
     }
 
-    fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login.json", {
+    fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(data)
-    }).then((response) => {
-      if (response.ok) {
-        onLoggedIn(Username);
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Login response: ", data);
+      if (data.user) {
+        onLoggedIn(data.user, data.token);
       } else {
-        alert("Login failed");
+        alert("No such user");
       }
-    });
+    })
+    .catch((e) => {
+      alert("Something went wrong");
+    })
   };
 
   return (
