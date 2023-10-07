@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export const LoginView = () => {
+export const LoginView = ({ onLoggedIn }) => {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
 
@@ -17,6 +17,12 @@ export const LoginView = () => {
     fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login.json", {
       method: "POST",
       body: JSON.stringify(data)
+    }).then((response) => {
+      if (response.ok) {
+        onLoggedIn(Username);
+      } else {
+        alert("Login failed");
+      }
     });
   };
 
