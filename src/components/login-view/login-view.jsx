@@ -1,6 +1,24 @@
+import React from "react";
+
 export const LoginView = () => {
+
+  const handleSubmit = (event) => {
+    //prevent submit button reloading the page
+    event.preventDefault();
+
+    const data = {
+      access: username,
+      secret: password
+    }
+
+    fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login", {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         Username:
         <input type="text" />
