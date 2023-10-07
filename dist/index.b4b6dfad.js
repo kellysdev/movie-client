@@ -28375,10 +28375,10 @@ const LoginView = ()=>{
         //prevent submit button reloading the page
         event.preventDefault();
         const data = {
-            access: username,
-            secret: password
+            access: Username,
+            secret: Password
         };
-        fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login", {
+        fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login.json", {
             method: "POST",
             body: JSON.stringify(data)
         });
