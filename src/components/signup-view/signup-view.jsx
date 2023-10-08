@@ -1,4 +1,3 @@
-import { response } from "express";
 import { useState } from "react";
 
 export const SignupView = () => {
