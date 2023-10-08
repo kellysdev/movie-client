@@ -27274,8 +27274,6 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 const MovieCard = ({ movie, onMovieClick })=>{
@@ -27286,7 +27284,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
         children: movie.Title
     }, void 0, false, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 6,
+        lineNumber: 5,
         columnNumber: 5
     }, undefined);
 };
