@@ -12,9 +12,7 @@ const MainView = () => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    if (!token) {
-      return;
-    }
+    if (!token) return;
 
     fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies", {
       headers: {Authorization: `Bearer ${token}`}
@@ -58,7 +56,7 @@ const MainView = () => {
           }}
          />
       ))}
-      <button onClick={() => {setUser(null); setToken(null);}}>Logout</button>
+      <button onClick={() => {setUser(null); setToken(null); localStorage.clear();}}>Logout</button>
     </>
   );
 
