@@ -1,3 +1,4 @@
+import { response } from "express";
 import { useState } from "react";
 
 export const SignupView = () => {
@@ -6,7 +7,32 @@ export const SignupView = () => {
   const [Email, setEmail] = useState("");
   const [Birthday, setBirthday] = useState("");
 
-  handleSubmit = (event) => {};
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    const data = {
+      Username: Username,
+      Password: Password,
+      Email: Email,
+      Birthday: Birthday
+    };
+  
+    fetch("https://popopolis-f7a904c7cad0.herokuapp.com/users", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then((response) => {
+      if (response.ok) {
+        alert("Signup successful");
+        window.location.reload();
+      } else {
+        alert("Signup failed");
+      }
+    })
+  };
 
 
   return (
