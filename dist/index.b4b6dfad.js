@@ -27197,9 +27197,9 @@ const MainView = ()=>{
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then((response)=>response.json()).then((data)=>{
-            console.log(data);
-            setMovies(data);
+        }).then((response)=>response.json()).then((movies)=>{
+            console.log(movies);
+            setMovies(movies);
         });
     }, [
         token

@@ -20,9 +20,9 @@ const MainView = () => {
       headers: {Authorization: `Bearer ${token}`}
     })
     .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      setMovies(data);
+    .then((movies) => {
+      console.log(movies);
+      setMovies(movies);
     });
   }, [token]);
 
@@ -64,7 +64,12 @@ const MainView = () => {
           }}
          />
       ))}
-      <button onClick={() => {setUser(null); setToken(null); localStorage.clear();}}>Logout</button>
+      <button onClick={() => {
+          setUser(null); 
+          setToken(null); 
+          localStorage.clear();
+        }}>Logout
+      </button>
     </>
   );
 
