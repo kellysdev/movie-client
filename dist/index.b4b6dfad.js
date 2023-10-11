@@ -28421,8 +28421,8 @@ const LoginView = ({ onLoggedIn })=>{
         //prevent submit button reloading the page
         event.preventDefault();
         const data = {
-            access: Username,
-            secret: Password
+            Username: Username,
+            Password: Password
         };
         fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login", {
             method: "POST",
