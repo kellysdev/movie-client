@@ -1,3 +1,5 @@
+import Button from "react-bootstrap/Button";
+
 export const MovieView = ({ movie, onBackClick }) => {
   return (
     <div>
@@ -19,7 +21,7 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>Actors: </span>
         <span>{movie.Actors.join(", ")}</span>
       </div>
-      <button onClick={onBackClick}>Back</button>
+      <Button onClick={onBackClick}>Back</Button>
     </div>
   );
 };
