@@ -30,7 +30,7 @@ const MainView = () => {
   }, [token]);
 
   return (
-    <Row>
+    <Row className="justify-content-sm-center">
       {!user ? (
         // if no user, return LoginView or SignupView
         <Col md={5}>
@@ -56,7 +56,6 @@ const MainView = () => {
         {movies.map((movie) => (
           <Col className="mb-5" key={movie._id} md={3}>
             <MovieCard 
-              key={movie._id}
               movie={movie}
               onMovieClick={(newSelectedMovie) => {
                 setSelectedMovie(newSelectedMovie);
