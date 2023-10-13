@@ -6,7 +6,8 @@ export const MovieCard = ({ movie, onMovieClick }) => {
     <Card className="h-100">
       <Card.Img variant="top" src={movie.ImagePath} />
       <Card.Title>{movie.Title}</Card.Title>
-      <Button onClick={() => {onMovieClick(movie);}}>
+      <Button onClick={() => {onMovieClick(movie);}}
+        variant="warning">
         Open
       </Button>
     </Card>
