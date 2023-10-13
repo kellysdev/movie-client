@@ -15,6 +15,7 @@ const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
+    // if a user logs in and generates a token: use token to fetch movies from the database, set movies to array, store token
     if (!token) return;
 
     fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies", {
@@ -28,8 +29,9 @@ const MainView = () => {
   }, [token]);
 
   return (
-    <Row> 
+    <Row>
       {!user ? (
+        // if no user, return LoginView or SignupView
         <>
           <LoginView 
             onLoggedIn={(user, token) => {
@@ -37,16 +39,16 @@ const MainView = () => {
               setToken(token);
             }}
           />
-
           or
-
           <SignupView />
         </>
       ) : selectedMovie ? (
+        // if a movie is selected, display MovieView
           <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
       ) : movies.Length === 0 ? (
         <div>No movies in the list!</div>
       ) : (
+        // displays movie cards for movies in array and selects a movie when one is clicked on
         <>
         {movies.map((movie) => (
           <MovieCard 
@@ -58,13 +60,14 @@ const MainView = () => {
            />
         ))}
         <button onClick={() => {
+          // button at the bottom of MainView
             setUser(null); 
             setToken(null); 
             localStorage.clear();
           }}>Logout
         </button>
       </>
-      )} 
+      )}
     </Row>
   );
 
