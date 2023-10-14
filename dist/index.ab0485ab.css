@@ -13345,9 +13345,8 @@ textarea.form-control-lg {
   }
 }
 
-.logoutButton {
-  margin: 1rem;
-  padding: 1rem 1.5rem;
+.backButton {
+  margin: 1rem 0;
 }
 
 /*# sourceMappingURL=index.ab0485ab.css.map */

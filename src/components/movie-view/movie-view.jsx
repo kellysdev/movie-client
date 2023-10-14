@@ -16,7 +16,7 @@ export const MovieView = ({ movies }) => {
       </div>
       <div>
         <span>{movie.ReleaseDate}</span><br />
-        <span>{movie.Description}</span><br />
+        <span>{movie.Description}</span><br /><br />
         <span>Genre: </span>
         <span>{movie.Genre.Name}</span>
         <br />
@@ -27,7 +27,7 @@ export const MovieView = ({ movies }) => {
         <span>{movie.Actors.join(", ")}</span>
       </div>
       <Link to={`/`}>
-        <Button variant="warning">Back</Button>
+        <Button variant="warning" className="backButton">Back</Button>
       </Link>
     </div>
   );
