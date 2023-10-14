@@ -2,8 +2,6 @@ import React from "react";
 import { useState, useEfect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
-import { FavoriteMovies } from "./favorite-movies";
-// import { UpdateUser } from "./update-user";
 
 export const ProfileView = ({ user, token, setUser, movies }) => {
   const [Username, setUsername] = useState(user.Username);
@@ -100,8 +98,21 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
       </Col>
 
       <Col>
-        <FavoriteMovies />
+        <Row>
+            <h2>Favorite Movies</h2>
+            {!favoriteMovies ? (
+              <div>You haven't added any movies to your list of favorites.</div>
+            ) : (
+              // Why doesn't it like this?
+              {movies.map((movie) => (
+                <Col className="mb-5" key={movie._id} xs={3}>
+                  <MovieCard movie={movie} />
+                </Col>
+            ))}
+          )}
+        </Row>
       </Col>
+
     </Row>
   );
 };
