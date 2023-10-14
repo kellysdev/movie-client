@@ -45,15 +45,16 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
     <Row>
       <Col>
         <Row>
-          <h2>{user.Username}</h2>
+          <h3>User Information</h3>
           <p>
+            Username: {user.Username}<br />
             Email: {user.Email}<br />
             Birthday: {user.Birthday}
-          </p>        
+          </p>  
         </Row>
 
         <Row>
-          <h3>Update User Info:</h3>
+          <h5>Update your information here:</h5>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Username:</Form.Label>
@@ -92,14 +93,14 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
               />
           </Form.Group>
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit" variant="warning">Submit</Button>
         </Form>
         </Row>
       </Col>
 
       <Col>
         <Row>
-            <h2>Favorite Movies</h2>
+            <h3>Favorite Movies</h3>
             {!favoriteMovies ? (
               <div>You haven't added any movies to your list.</div>
             ) : (
