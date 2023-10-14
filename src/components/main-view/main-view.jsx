@@ -24,7 +24,7 @@ const MainView = () => {
     })
     .then((response) => response.json())
     .then((movies) => {
-      // console.log(movies);
+      console.log(movies);
       setMovies(movies);
     });
   }, [token]);
@@ -79,7 +79,7 @@ const MainView = () => {
                   <div>The list is empty!</div>
                 ) : (
                   <Col md={8}>
-                    <MovieView movie={movies} />
+                    <MovieView movies={movies} />
                   </Col>
                 )}
               </>

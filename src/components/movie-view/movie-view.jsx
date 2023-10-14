@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 
 export const MovieView = ({ movies }) => {
   const {movieId} = useParams();
