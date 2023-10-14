@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
-    <Navbar expand="md" data-bs-theme="dark" fixed="top">
+    <Navbar expand="sm" bg="light">
       <Container>
         <Navbar.Brand to="/">Popopolis</Navbar.Brand>
-        <Nav className="me-auto">
+        <Nav>
           {!user && (
             <>
               <Nav.Link as={Link} to="/login">Login</Nav.Link>
