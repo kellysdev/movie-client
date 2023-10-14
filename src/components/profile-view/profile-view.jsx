@@ -101,14 +101,11 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
         <Row>
             <h2>Favorite Movies</h2>
             {!favoriteMovies ? (
-              <div>You haven't added any movies to your list of favorites.</div>
+              <div>You haven't added any movies to your list.</div>
             ) : (
-              // Why doesn't it like this?
-              {movies.map((movie) => (
-                <Col className="mb-5" key={movie._id} xs={3}>
-                  <MovieCard movie={movie} />
-                </Col>
-            ))}
+              <Col className="mb-5" key={movies._id} xs={3}>
+                  <MovieCard movie={favoriteMovies} />
+              </Col>
           )}
         </Row>
       </Col>
