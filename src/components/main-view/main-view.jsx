@@ -7,6 +7,7 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { ProfileView } from "../profile-view/profile-view";
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -103,6 +104,19 @@ const MainView = () => {
                     ))}
                   </>
                 )}
+              </>
+            }
+          />
+
+          <Route 
+            path="/profile"
+            element={
+              <>
+              {!user ? (
+                <Navigate to="/login" replace />
+              ) : (
+                <ProfileView movies={movies} />
+              )}
               </>
             }
           />
