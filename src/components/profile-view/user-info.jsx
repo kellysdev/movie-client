@@ -1,12 +1,12 @@
 import React from "react";
 
-export const UserInfo = ({ user, Email, Birthday }) => {
+export const UserInfo = ({ Username, Email, Birthday }) => {
   return (
     <>
-      <h2>{user.Username}</h2>
+      <h2>{Username}</h2>
       <p>
-        Email: {user.Email}<br />
-        Birthday: {user.Birthday}
+        Email: {Email}<br />
+        Birthday: {Birthday}
       </p>
     </>
   );
