@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav, NavbarBrand } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const NavigationBar = () => {
+export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
     <Navbar expand="md" data-bs-theme="dark" fixed="top">
       <Container>
