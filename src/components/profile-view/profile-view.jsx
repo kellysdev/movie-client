@@ -3,7 +3,7 @@ import { useState, useEfect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import { FavoriteMovies } from "./favorite-movies";
-import { UpdateUser } from "./update-user";
+// import { UpdateUser } from "./update-user";
 
 export const ProfileView = ({ user, token, setUser, movies }) => {
   const [Username, setUsername] = useState(user.Username);
@@ -13,7 +13,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 
   let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie._id));
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     let data = {
@@ -55,7 +55,47 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
         </Row>
 
         <Row>
-          <UpdateUser  />
+          <h3>Update User Info:</h3>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                // value={Username}
+                onChange={(e) => setUsername(e.target.value)}
+                minLength="3"
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                // value={Password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                // value={Email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Birthday:</Form.Label>
+              <Form.Control
+                type="date"
+                // value={Birthday}
+                onChange={(e) => setBirthday(e.target.value)}
+              />
+          </Form.Group>
+
+          <Button type="submit">Submit</Button>
+        </Form>
         </Row>
       </Col>
 
