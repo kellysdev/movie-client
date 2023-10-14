@@ -48004,7 +48004,11 @@ var _movieCard = require("../movie-card/movie-card");
 var _userInfo = require("./user-info");
 const ProfileView = ({ user, token, setUser, movies })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfo.UserInfo), {}, void 0, false, {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfo.UserInfo), {
+            user: user.Username,
+            Email: user.Email,
+            Birthday: user.Birthday
+        }, void 0, false, {
             fileName: "src/components/profile-view/profile-view.jsx",
             lineNumber: 9,
             columnNumber: 7
@@ -48045,12 +48049,14 @@ const UserInfo = ({ user, Email, Birthday })=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
+                    "Email: ",
                     user.Email,
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                         fileName: "src/components/profile-view/user-info.jsx",
-                        lineNumber: 7,
-                        columnNumber: 22
+                        lineNumber: 8,
+                        columnNumber: 28
                     }, undefined),
+                    "Birthday: ",
                     user.Birthday
                 ]
             }, void 0, true, {

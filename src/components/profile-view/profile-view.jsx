@@ -6,7 +6,7 @@ import { UserInfo } from "./user-info";
 export const ProfileView = ({ user, token, setUser, movies }) => {
   return (
     <>
-      <UserInfo />
+      <UserInfo user={user.Username} Email={user.Email} Birthday={user.Birthday}/>
     </>
   );
 };
