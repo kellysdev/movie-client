@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEfect } from "react";
+import { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
@@ -8,8 +8,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState(user.Email);
   const [Birthday, setBirthday] = useState(user.Birthday);
-
-  let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie._id));
+  const [favoriteMovies, setFavoriteMovies] = useState(user.favoriteMovies);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,7 +16,8 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
     let data = {
       Username: Username,
       Email: Email,
-      Birthday: Birthday
+      Birthday: Birthday,
+      FavoriteMovies: favoriteMovies
     };
 
     fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
@@ -54,13 +54,12 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
         </Row>
 
         <Row>
-          <h5>Update your information here:</h5>
+          <h5>Update your information:</h5>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Username:</Form.Label>
               <Form.Control
                 type="text"
-                // value={Username}
                 onChange={(e) => setUsername(e.target.value)}
                 minLength="3"
               />
@@ -70,7 +69,6 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
               <Form.Label>Password:</Form.Label>
               <Form.Control
                 type="password"
-                // value={Password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
@@ -79,7 +77,6 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
               <Form.Label>Email:</Form.Label>
               <Form.Control
                 type="email"
-                // value={Email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Form.Group>
@@ -88,7 +85,6 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
               <Form.Label>Birthday:</Form.Label>
               <Form.Control
                 type="date"
-                // value={Birthday}
                 onChange={(e) => setBirthday(e.target.value)}
               />
           </Form.Group>
