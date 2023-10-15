@@ -31,42 +31,6 @@ const MainView = () => {
     });
   }, [token]);
 
-  const handleAddFavorite = ((event) => {
-    event.preventDefault();
-
-    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then((response) => {
-      if (favoriteMovies.includes(movie._id)) {
-        alert("This movie is already in your list");
-      } else {
-        console.log("movie id:", movie._id);
-        favoriteMovies.push(movie._id);
-        setFavoriteMovies(response.json);
-      }
-    })
-    .catch((e) => alert(e));
-  });
-
-  const handleRemoveFavorite = (event) => {
-    event.preventDefault();
-
-    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
-      method:"DELETE",
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then((response) => {
-      if (favoriteMovies.includes(movie._id)) {
-        let index = favoriteMovies.indexOf(movie._id);
-        let badMovie = favoriteMovies.splice(index, 1);
-        console.log(badMovie);
-        console.log(favoriteMovies);
-      }
-    })
-  };
-
   return (
     <BrowserRouter>
       <NavigationBar 
@@ -120,10 +84,8 @@ const MainView = () => {
                     <MovieView 
                     movies={movies} 
                     user={user} 
-                    token={token} 
-                    handleAddFavorite={handleAddFavorite}
+                    token={token}
                     favoriteMovies={favoriteMovies}
-                    handleRemoveFavorite={handleRemoveFavorite}
                      />
                   </Col>
                 )}
@@ -163,6 +125,7 @@ const MainView = () => {
                   movies={movies} 
                   user={user} 
                   token={token} 
+                  favoriteMovies={favoriteMovies}
                  />
               )}
               </>
