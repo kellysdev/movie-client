@@ -15,7 +15,6 @@ const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
     // if a user logs in and generates a token: use token to fetch movies from the database, set movies to array, store token
@@ -85,7 +84,6 @@ const MainView = () => {
                     movies={movies} 
                     user={user} 
                     token={token}
-                    favoriteMovies={favoriteMovies}
                      />
                   </Col>
                 )}
@@ -125,7 +123,6 @@ const MainView = () => {
                   movies={movies} 
                   user={user} 
                   token={token} 
-                  favoriteMovies={favoriteMovies}
                  />
               )}
               </>
