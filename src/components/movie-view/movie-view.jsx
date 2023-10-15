@@ -23,6 +23,7 @@ export const MovieView = ({ movies, user, token }) => {
       } else {
         console.log("movie id:", movie._id);
         favoriteMovies.push(movie._id);
+        alert("This movie has been added to your list");
       }
     })
     .catch((e) => alert(e));
