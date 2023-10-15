@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
@@ -65,12 +66,14 @@ export const MovieView = ({ movies, user, token }) => {
         <span>{movie.Actors.join(", ")}</span>
       </div>
      
-      <Button onClick={handleAddFavorite} variant="warning">Add to Favorites</Button>
-      <br />
-      <Button onClick={handleRemoveFavorite}variant="warning">Remove from Favorites</Button>
-      <Link to={`/`}>
-        <Button variant="warning" className="backButton">Back</Button>
-      </Link>
+      <div className="d-flex flex-wrap">
+        <Button onClick={handleAddFavorite} className="p-2" variant="warning">Add to Favorites</Button>
+        <Button onClick={handleRemoveFavorite} className="p-2" variant="warning">Remove from Favorites</Button>
+
+        <Link to={`/`}>
+          <Button variant="warning" className="p-2 ms-auto">Back</Button>
+        </Link>
+      </div>
 
     </div>
   );
