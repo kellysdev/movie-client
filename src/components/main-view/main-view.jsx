@@ -15,6 +15,7 @@ const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([user.favoriteMovies]);
 
   useEffect(() => {
     // if a user logs in and generates a token: use token to fetch movies from the database, set movies to array, store token
@@ -29,6 +30,18 @@ const MainView = () => {
       setMovies(movies);
     });
   }, [token]);
+
+  useEffect(() => {
+    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
+      headers: {Authorization: `Bearer ${token}`}
+    })
+    .then((response) => response.json())
+    .then((user) => {
+      let favoriteMovies = movies.filter(m => user.FavoriteMovies.includes(m._id));
+      console.log(user.favoriteMovies);
+      setFavoriteMovies(user.favoriteMovies);
+    });
+  });
 
   return (
     <BrowserRouter>
@@ -122,7 +135,8 @@ const MainView = () => {
                 <ProfileView 
                   movies={movies} 
                   user={user} 
-                  token={token} 
+                  token={token}
+                  favoriteMovies={user.favoriteMovies}
                  />
               )}
               </>

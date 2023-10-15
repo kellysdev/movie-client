@@ -1,14 +1,13 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, token, setUser, movies }) => {
+export const ProfileView = ({ user, token, setUser, movies, favoriteMovies }) => {
   const [Username, setUsername] = useState(user.Username);
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState(user.Email);
   const [Birthday, setBirthday] = useState(user.Birthday);
-  const [favoriteMovies, setFavoriteMovies] = useState(user.favoriteMovies);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,8 +15,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
     let data = {
       Username: Username,
       Email: Email,
-      Birthday: Birthday,
-      FavoriteMovies: favoriteMovies
+      Birthday: Birthday
     };
 
     fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
@@ -101,7 +99,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
               <div>You haven't added any movies to your list.</div>
             ) : (
               <Col className="mb-5" key={movies._id} xs={3}>
-                  <MovieCard movie={favoriteMovies} />
+                  <MovieCard favoriteMovies={user.favoriteMovies} />
               </Col>
           )}
         </Row>
