@@ -44,6 +44,7 @@ export const MovieView = ({ movies, user, token }) => {
         console.log(favoriteMovies);
       }
     })
+    .catch((e) => alert(e));
   };
 
   return (
