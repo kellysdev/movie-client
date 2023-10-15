@@ -19,10 +19,10 @@ export const MovieView = ({ movies, user, token }) => {
     .then((response) => {
       if (favoriteMovies.includes(movie._id)) {
         alert("This movie is already in your list");
+        return false;
       } else {
         console.log("movie id:", movie._id);
         favoriteMovies.push(movie._id);
-        setFavoriteMovies(response.json);
       }
     })
     .catch((e) => alert(e));
