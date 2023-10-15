@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, user, token, handleAddFavorite, handleRemoveFavorite }) => {
   const {movieId} = useParams();
   const movie = movies.find((m) => m._id === movieId);
 
@@ -26,9 +26,17 @@ export const MovieView = ({ movies }) => {
         <span>Actors: </span>
         <span>{movie.Actors.join(", ")}</span>
       </div>
-      <Link to={`/`}>
-        <Button variant="warning" className="backButton">Back</Button>
-      </Link>
+
+      <div>
+        <Button onClick={handleAddFavorite} variant="warning">Add to Favorites</Button>
+        <br />
+        <Button onClick={handleRemoveFavorite}variant="warning">Remove from Favorites</Button>
+        
+        <Link to={`/`}>
+          <Button variant="warning" className="backButton">Back</Button>
+        </Link>
+      </div>
+
     </div>
   );
 };

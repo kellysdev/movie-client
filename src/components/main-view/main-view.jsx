@@ -15,6 +15,7 @@ const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
     // if a user logs in and generates a token: use token to fetch movies from the database, set movies to array, store token
@@ -29,6 +30,42 @@ const MainView = () => {
       setMovies(movies);
     });
   }, [token]);
+
+  const handleAddFavorite = ((event) => {
+    event.preventDefault();
+
+    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then((response) => {
+      if (favoriteMovies.includes(movie._id)) {
+        alert("This movie is already in your list");
+      } else {
+        console.log("movie id:", movie._id);
+        favoriteMovies.push(movie._id);
+        setFavoriteMovies(response.json);
+      }
+    })
+    .catch((e) => alert(e));
+  });
+
+  const handleRemoveFavorite = (event) => {
+    event.preventDefault();
+
+    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
+      method:"DELETE",
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then((response) => {
+      if (favoriteMovies.includes(movie._id)) {
+        let index = favoriteMovies.indexOf(movie._id);
+        let badMovie = favoriteMovies.splice(index, 1);
+        console.log(badMovie);
+        console.log(favoriteMovies);
+      }
+    })
+  };
 
   return (
     <BrowserRouter>
@@ -80,7 +117,14 @@ const MainView = () => {
                   <div>The list is empty!</div>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    <MovieView 
+                    movies={movies} 
+                    user={user} 
+                    token={token} 
+                    handleAddFavorite={handleAddFavorite}
+                    favoriteMovies={favoriteMovies}
+                    handleRemoveFavorite={handleRemoveFavorite}
+                     />
                   </Col>
                 )}
               </>
