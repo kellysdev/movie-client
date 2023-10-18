@@ -57,6 +57,8 @@ export const ProfileView = ({ user, token, setUser, movies, favoriteMovies }) =>
             <Form.Group>
               <Form.Label>Username:</Form.Label>
               <Form.Control
+                disabled
+                placeholder="Disabled"
                 type="text"
                 onChange={(e) => setUsername(e.target.value)}
                 minLength="3"
@@ -66,6 +68,8 @@ export const ProfileView = ({ user, token, setUser, movies, favoriteMovies }) =>
             <Form.Group>
               <Form.Label>Password:</Form.Label>
               <Form.Control
+                disabled
+                placeholder="Disabled"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -74,6 +78,8 @@ export const ProfileView = ({ user, token, setUser, movies, favoriteMovies }) =>
             <Form.Group>
               <Form.Label>Email:</Form.Label>
               <Form.Control
+                disabled
+                placeholder="Disabled"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -82,12 +88,14 @@ export const ProfileView = ({ user, token, setUser, movies, favoriteMovies }) =>
             <Form.Group>
               <Form.Label>Birthday:</Form.Label>
               <Form.Control
+                disabled
+                placeholder="Disabled"
                 type="date"
                 onChange={(e) => setBirthday(e.target.value)}
               />
           </Form.Group>
 
-          <Button type="submit" variant="warning">Submit</Button>
+          <Button variant="warning">Disabled</Button>
         </Form>
         </Row>
       </Col>
