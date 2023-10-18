@@ -97,6 +97,7 @@ const MainView = () => {
                     movies={movies} 
                     user={user} 
                     token={token}
+                    favoriteMovies={user.favoriteMovies}
                      />
                   </Col>
                 )}

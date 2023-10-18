@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 
-export const MovieView = ({ movies, user, token }) => {
+export const MovieView = ({ movies, user, token, favoriteMovies }) => {
   const {movieId} = useParams();
   const movie = movies.find((m) => m._id === movieId);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
