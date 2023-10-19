@@ -4,7 +4,7 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import Modal from "react-bootstrap/Modal";
 
-export const ProfileView = ({ user, token, setUser, movie, favoriteMovies }) => {
+export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMovies }) => {
   const [Username, setUsername] = useState(user.Username);
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState(user.Email);
@@ -47,25 +47,21 @@ export const ProfileView = ({ user, token, setUser, movie, favoriteMovies }) => 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  // const handleDeregister = () = {
-  //   fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //         Authorization: `Bearer ${token}`
-  //       }
-  //   })
-  //   .then((response) => {
-  //     if(response.ok) {
-  //      setUser(null);
-  //      setToken(null);
-  //      localStorage.clear();
-  //      return("You have deregistered your account.")
-  //     } else {
-  //       alert("Something went wrong.")
-  //     }
-  //   })
-  //   .catch((e) => console.log(e))
-  // };
+  const handleDeregister = () => {
+    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then((response) => {
+      if (response.ok) {
+        setUser(null);
+        setToken(null);
+        alert("You have deregistered your account.");
+      } else {
+        alert("Something went wrong.");
+      }
+    })
+  };
 
   return (
     <>
@@ -152,7 +148,7 @@ export const ProfileView = ({ user, token, setUser, movie, favoriteMovies }) => 
           </Modal.Body>
         <Modal.Footer>
           <Button 
-          // onClick={handleDeregister}
+          onClick={handleDeregister}
           variant="danger">
             Deregister
           </Button>

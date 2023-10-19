@@ -132,6 +132,8 @@ const MainView = () => {
                   user={user} 
                   token={token}
                   favoriteMovies={favoriteMovies}
+                  setUser={setUser}
+                  setToken={setToken}
                  />
               )}
               </>
