@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, token, setUser, movies, favoriteMovies }) => {
+export const ProfileView = ({ user, token, setUser, movie, favoriteMovies }) => {
   const [Username, setUsername] = useState(user.Username);
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState(user.Email);
@@ -103,13 +103,11 @@ export const ProfileView = ({ user, token, setUser, movies, favoriteMovies }) =>
       <Col>
         <Row>
             <h3>Favorite Movies</h3>
-            {!favoriteMovies ? (
-              <div>You haven't added any movies to your list.</div>
-            ) : (
-              <Col className="mb-5" key={movies._id} xs={3}>
-                  <MovieCard favoriteMovies={user.favoriteMovies} />
+            {favoriteMovies.map((movie) => (
+              <Col className="mb-5" key={movie._id} xs={3}>
+                <MovieCard movie={favoriteMovies} />
               </Col>
-          )}
+            ))}
         </Row>
       </Col>
 

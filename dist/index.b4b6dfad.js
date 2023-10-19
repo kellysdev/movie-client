@@ -48080,7 +48080,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _movieCard = require("../movie-card/movie-card");
 var _s = $RefreshSig$();
-const ProfileView = ({ user, token, setUser, movies, favoriteMovies })=>{
+const ProfileView = ({ user, token, setUser, movie, favoriteMovies })=>{
     _s();
     const [Username, setUsername] = (0, _react.useState)(user.Username);
     const [Password, setPassword] = (0, _react.useState)("");
@@ -48300,27 +48300,21 @@ const ProfileView = ({ user, token, setUser, movies, favoriteMovies })=>{
                             lineNumber: 105,
                             columnNumber: 13
                         }, undefined),
-                        !favoriteMovies ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            children: "You haven't added any movies to your list."
-                        }, void 0, false, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 107,
-                            columnNumber: 15
-                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                            className: "mb-5",
-                            xs: 3,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                favoriteMovies: user.favoriteMovies
-                            }, void 0, false, {
+                        favoriteMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                className: "mb-5",
+                                xs: 3,
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                    movie: favoriteMovies
+                                }, void 0, false, {
+                                    fileName: "src/components/profile-view/profile-view.jsx",
+                                    lineNumber: 108,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, movie._id, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 110,
-                                columnNumber: 19
-                            }, undefined)
-                        }, movies._id, false, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 109,
-                            columnNumber: 15
-                        }, undefined)
+                                lineNumber: 107,
+                                columnNumber: 15
+                            }, undefined))
                     ]
                 }, void 0, true, {
                     fileName: "src/components/profile-view/profile-view.jsx",
