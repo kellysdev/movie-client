@@ -16,13 +16,16 @@ export const MovieView = ({ movies, user, token, favoriteMovies }) => {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => {
-      if (favoriteMovies.includes(movie._id)) {
+      if (response.ok && favoriteMovies.includes(movie._id)) {
         alert("This movie is already in your list");
         return false;
-      } else {
+      } else if (response.ok) {
         console.log("movie id:", movie._id);
         favoriteMovies.push(movie._id);
         alert("This movie has been added to your list");
+      } else {
+        alert("Something went wrong.");
+        return false;
       }
     })
     .catch((e) => alert(e));
