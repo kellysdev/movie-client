@@ -19,6 +19,9 @@ export const ProfileView = ({ user, token, setUser, movie, favoriteMovies }) => 
       Email: Email,
       Birthday: Birthday
     };
+    if(Password) {
+      data["Password"] = Password
+    };
 
     fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
       method: "PUT",
@@ -83,10 +86,9 @@ export const ProfileView = ({ user, token, setUser, movie, favoriteMovies }) => 
               <Form.Group>
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
-                  disabled
-                  placeholder="Disabled"
                   type="text"
                   onChange={(e) => setUsername(e.target.value)}
+                  required
                   minLength="3"
                 />
               </Form.Group>
@@ -94,34 +96,31 @@ export const ProfileView = ({ user, token, setUser, movie, favoriteMovies }) => 
               <Form.Group>
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
-                  disabled
-                  placeholder="Disabled"
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </Form.Group>
 
               <Form.Group>
                 <Form.Label>Email:</Form.Label>
                 <Form.Control
-                  disabled
-                  placeholder="Disabled"
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </Form.Group>
 
               <Form.Group>
                 <Form.Label>Birthday:</Form.Label>
                 <Form.Control
-                  disabled
-                  placeholder="Disabled"
                   type="date"
                   onChange={(e) => setBirthday(e.target.value)}
+                  required
                 />
             </Form.Group>
 
-            <Button variant="warning">Disabled</Button>
+            <Button type="submit" variant="warning">Submit</Button>
           </Form>
           </Row>
 
