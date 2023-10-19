@@ -7,8 +7,7 @@ import { useParams } from "react-router";
 export const MovieView = ({ movies, user, token, favoriteMovies }) => {
   const {movieId} = useParams();
   const movie = movies.find((m) => m._id === movieId);
-  const [favoriteMovies, setFavoriteMovies] = useState([])
-
+  
   const handleAddFavorite = (event) => {
     event.preventDefault();
 
