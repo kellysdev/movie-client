@@ -48354,7 +48354,7 @@ const ProfileView = ({ user, token, setUser, movie, favoriteMovies })=>{
                                         className: "mb-5",
                                         xs: 3,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                            movie: favoriteMovies
+                                            movie: movie
                                         }, void 0, false, {
                                             fileName: "src/components/profile-view/profile-view.jsx",
                                             lineNumber: 139,
