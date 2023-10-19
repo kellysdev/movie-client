@@ -31,7 +31,8 @@ const MainView = () => {
   }, [token]);
 
   const favoriteMovies = movies.filter((movie) => {
-    return user.FavoriteMovies.includes(movie._id)
+    if (!user) {return false;}
+    return user.FavoriteMovies.includes(movie._id);
   });
 
   return (
@@ -42,7 +43,6 @@ const MainView = () => {
           setUser(null);
           setToken(null);
           localStorage.clear();
-          favoriteMovies.clear();
         }}
       />
       <Row className="justify-content-sm-center">
