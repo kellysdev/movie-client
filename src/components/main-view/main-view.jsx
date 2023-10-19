@@ -42,6 +42,7 @@ const MainView = () => {
           setUser(null);
           setToken(null);
           localStorage.clear();
+          favoriteMovies.clear();
         }}
       />
       <Row className="justify-content-sm-center">
