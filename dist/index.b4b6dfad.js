@@ -47461,7 +47461,7 @@ const MovieView = ({ movies, user, token, favoriteMovies })=>{
                 let index = favoriteMovies.indexOf(movie._id);
                 let badMovie = favoriteMovies.splice(index, 1);
                 console.log(badMovie);
-                console.log(favoriteMovies);
+                alert("This movie has been removed from your list.");
             }
         }).catch((e)=>alert(e));
     };
