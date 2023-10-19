@@ -48355,7 +48355,7 @@ const ProfileView = ({ user, token, setUser, movie, favoriteMovies })=>{
                                 }, undefined),
                                 favoriteMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                         className: "mb-5",
-                                        xs: 3,
+                                        sm: 4,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                             movie: movie
                                         }, void 0, false, {
