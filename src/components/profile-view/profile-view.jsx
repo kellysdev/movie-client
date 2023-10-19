@@ -1,13 +1,15 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
+import Modal from "react-bootstrap/Modal";
 
 export const ProfileView = ({ user, token, setUser, movie, favoriteMovies }) => {
   const [Username, setUsername] = useState(user.Username);
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState(user.Email);
   const [Birthday, setBirthday] = useState(user.Birthday);
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -39,78 +41,125 @@ export const ProfileView = ({ user, token, setUser, movie, favoriteMovies }) => 
     })
   };
 
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+  // const handleDeregister = () = {
+  //   fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
+  //     method: "DELETE",
+  //     headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //   })
+  //   .then((response) => {
+  //     if(response.ok) {
+  //      setUser(null);
+  //      setToken(null);
+  //      localStorage.clear();
+  //      return("You have deregistered your account.")
+  //     } else {
+  //       alert("Something went wrong.")
+  //     }
+  //   })
+  //   .catch((e) => console.log(e))
+  // };
+
   return (
-    <Row>
-      <Col>
-        <Row>
-          <h3>User Information</h3>
-          <p>
-            Username: {user.Username}<br />
-            Email: {user.Email}<br />
-            Birthday: {user.Birthday}
-          </p>  
-        </Row>
+    <>
+      <Row>
+        <Col>
+          <Row>
+            <h3>User Information</h3>
+            <p>
+              Username: {user.Username}<br />
+              Email: {user.Email}<br />
+              Birthday: {user.Birthday}
+            </p>  
+          </Row>
 
-        <Row>
-          <h5>Update your information:</h5>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Label>Username:</Form.Label>
-              <Form.Control
-                disabled
-                placeholder="Disabled"
-                type="text"
-                onChange={(e) => setUsername(e.target.value)}
-                minLength="3"
-              />
+          <Row>
+            <h5>Update your information:</h5>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
+                  disabled
+                  placeholder="Disabled"
+                  type="text"
+                  onChange={(e) => setUsername(e.target.value)}
+                  minLength="3"
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
+                  disabled
+                  placeholder="Disabled"
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
+                  disabled
+                  placeholder="Disabled"
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Birthday:</Form.Label>
+                <Form.Control
+                  disabled
+                  placeholder="Disabled"
+                  type="date"
+                  onChange={(e) => setBirthday(e.target.value)}
+                />
             </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Password:</Form.Label>
-              <Form.Control
-                disabled
-                placeholder="Disabled"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
+            <Button variant="warning">Disabled</Button>
+          </Form>
+          </Row>
 
-            <Form.Group>
-              <Form.Label>Email:</Form.Label>
-              <Form.Control
-                disabled
-                placeholder="Disabled"
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
+          <Row>
+            <h5>Deregister:</h5>
+            <Button onClick={handleShowModal} variant="warning">Click Here</Button>
+          </Row>
+        </Col>
 
-            <Form.Group>
-              <Form.Label>Birthday:</Form.Label>
-              <Form.Control
-                disabled
-                placeholder="Disabled"
-                type="date"
-                onChange={(e) => setBirthday(e.target.value)}
-              />
-          </Form.Group>
+        <Col>
+          <Row>
+              <h3>Favorite Movies</h3>
+              {favoriteMovies.map((movie) => (
+                <Col className="mb-5" key={movie._id} xs={3}>
+                  <MovieCard movie={favoriteMovies} />
+                </Col>
+              ))}
+          </Row>
+        </Col>
 
-          <Button variant="warning">Disabled</Button>
-        </Form>
-        </Row>
-      </Col>
+      </Row>
 
-      <Col>
-        <Row>
-            <h3>Favorite Movies</h3>
-            {favoriteMovies.map((movie) => (
-              <Col className="mb-5" key={movie._id} xs={3}>
-                <MovieCard movie={favoriteMovies} />
-              </Col>
-            ))}
-        </Row>
-      </Col>
-
-    </Row>
+      <Modal show={showModal} onHide={handleCloseModal} animation={false}>
+        <Modal.Header>
+          <Modal.Title>Deregister Account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you would like to deregister your account?
+          </Modal.Body>
+        <Modal.Footer>
+          <Button 
+          // onClick={handleDeregister}
+          variant="danger">
+            Deregister
+          </Button>
+          <Button onClick={handleCloseModal} variant="warning">Cancel</Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
