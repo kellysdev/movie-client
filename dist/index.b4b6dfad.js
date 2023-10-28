@@ -47446,7 +47446,7 @@ const MovieView = ({ movies, user, token, favoriteMovies })=>{
                 return false;
             } else if (response.ok) {
                 console.log("movie id:", movie._id);
-                favoriteMovies.push(movie._id);
+                favoriteMovies.push(movie);
                 alert("This movie has been added to your list");
             } else {
                 alert("Something went wrong.");
