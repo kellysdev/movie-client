@@ -47690,10 +47690,10 @@ const LoginView = ({ onLoggedIn })=>{
         };
         fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login", {
             method: "POST",
+            body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
+            }
         }).then((response)=>response.json()).then((data)=>{
             console.log("Login response: ", data);
             if (data.user) {
@@ -47709,7 +47709,7 @@ const LoginView = ({ onLoggedIn })=>{
         onSubmit: handleSubmit,
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                controlid: "formUsername",
+                controlId: "formUsername",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                         children: "Username:"
@@ -47736,7 +47736,7 @@ const LoginView = ({ onLoggedIn })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                controlid: "formPassword",
+                controlId: "formPassword",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                         children: "Password:"

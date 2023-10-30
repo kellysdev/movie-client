@@ -35,7 +35,7 @@ export const MovieView = ({ movies, user, token, favoriteMovies }) => {
     event.preventDefault();
 
     fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
-      method:"DELETE",
+      method: "DELETE",
       headers: { Authorization: `Bearer ${token}`}
     })
     .then((response) => {

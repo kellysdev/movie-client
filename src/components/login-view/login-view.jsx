@@ -18,10 +18,10 @@ export const LoginView = ({ onLoggedIn }) => {
 
     fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login", {
       method: "POST",
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+      }
     })
     .then((response) => response.json())
     .then((data) => {
@@ -42,7 +42,7 @@ export const LoginView = ({ onLoggedIn }) => {
   return (
     <Form onSubmit={handleSubmit}>
 
-      <Form.Group controlid="formUsername">
+      <Form.Group controlId="formUsername">
         <Form.Label>Username:</Form.Label>
         <Form.Control 
           type="text"
@@ -53,7 +53,7 @@ export const LoginView = ({ onLoggedIn }) => {
          />
       </Form.Group>
       
-      <Form.Group controlid="formPassword">
+      <Form.Group controlId="formPassword">
         <Form.Label>Password:</Form.Label>
         <Form.Control 
           type="password"
