@@ -30,10 +30,7 @@ const MainView = () => {
     });
   }, [token]);
 
-  const favoriteMovies = movies.filter((movie) => {
-    if (!user) {return false;}
-    return user.FavoriteMovies.includes(movie._id);
-  });
+  const favoriteMovies = movies.filter((movie) => user?.FavoriteMovies?.includes(movie._id));
 
   return (
     <BrowserRouter>
