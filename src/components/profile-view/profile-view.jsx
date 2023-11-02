@@ -41,6 +41,7 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
     .then ((data) => {
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
+      alert("Your information has been updated.");
     })
   };
 
