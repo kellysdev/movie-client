@@ -75,7 +75,7 @@ export const MovieView = ({ movies, user, token, favoriteMovies }) => {
         <Button onClick={handleRemoveFavorite} className="p-2" variant="warning">Remove from Favorites</Button>
 
         <Link to={`/`}>
-          <Button variant="warning" className="p-2 ms-auto">Back</Button>
+          <Button variant="warning" className="p-2 ms-auto">Home</Button>
         </Link>
       </div>
 

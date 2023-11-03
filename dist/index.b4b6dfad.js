@@ -47618,7 +47618,7 @@ const MovieView = ({ movies, user, token, favoriteMovies })=>{
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                             variant: "warning",
                             className: "p-2 ms-auto",
-                            children: "Back"
+                            children: "Home"
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 78,
