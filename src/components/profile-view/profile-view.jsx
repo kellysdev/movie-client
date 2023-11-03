@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import Modal from "react-bootstrap/Modal";
+import InputGroup from "react-bootstrap/InputGroup";
 
 export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMovies }) => {
   const [Username, setUsername] = useState(user.Username);
@@ -10,9 +11,42 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
   const [Email, setEmail] = useState(user.Email);
   const [Birthday, setBirthday] = useState(user.Birthday);
   const [showModal, setShowModal] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [validated, setValidated] = useState(false);
+
+  const validate = () => {
+    const newErrors = {}
+
+    if (Username.includes("_")) {
+      newErrors.Username = "Your username must be alphanumeric."
+    } else if(!Password) {
+      newErrors.Password = "Required."
+    } else if (!Email) {
+      newErrors.Email = "Required."
+    } else if (Email.includes(!"@") || Email.includes(!".com")) {
+      newErrors.Email = "Please enter a valid email."
+    } else if (!Birthday) {
+      newErrors.Birthday = "Required."
+    }
+
+    return newErrors
+  };
+
+  // ASCII codes for numbers, upper case, and lower case:
+  // (key >= 48 && key <= 57) || (key >= 65 && key <= 92) || (key >= 97 && key <= 124)
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const formErrors = validate()
+    
+    if(Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      setValidated(false);
+      return false;
+    } else {
+      setValidated(true);
+    };
 
     let data = {
       Username: Username,
@@ -35,13 +69,18 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
       if (response.ok) {
         return response.json();
       } else {
-        alert("Update failed")
+        alert("something went wrong.");
+        return false;
       }
     })
     .then ((data) => {
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
       alert("Your information has been updated.");
+    })
+    .catch (e => {
+      console.log(e),
+      alert("Update failed.");
     })
   };
 
@@ -79,16 +118,23 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
 
           <Row>
             <h5>Update your information:</h5>
-            <Form onSubmit={handleSubmit}>
+            <Form noValidate onSubmit={handleSubmit}>
+
+            <InputGroup hasValidation>
               <Form.Group>
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                   type="text"
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setUsername( e.target.value)}
                   required
                   minLength="3"
+                  isInvalid={errors.Username}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.Username}
+                </Form.Control.Feedback>
               </Form.Group>
+
 
               <Form.Group>
                 <Form.Label>Password:</Form.Label>
@@ -96,7 +142,11 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  isInvalid={errors.Password}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.Password}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group>
@@ -105,7 +155,11 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  isInvalid={errors.Email}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.Email}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group>
@@ -114,10 +168,15 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
                   type="date"
                   onChange={(e) => setBirthday(e.target.value)}
                   required
+                  isInvalid={errors.Birthday}
                 />
-            </Form.Group>
+                <Form.Control.Feedback type="invalid">
+                  {errors.Birthday}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </InputGroup>
 
-            <Button type="submit" variant="warning">Submit</Button>
+              <Button type="submit" variant="warning">Submit</Button>
           </Form>
           </Row>
 
