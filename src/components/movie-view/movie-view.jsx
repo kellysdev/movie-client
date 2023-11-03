@@ -44,6 +44,8 @@ export const MovieView = ({ movies, user, token, favoriteMovies }) => {
         let badMovie = favoriteMovies.splice(index, 1);
         console.log(badMovie);
         alert("This movie has been removed from your list.");
+      } else {
+        alert("Could not remove the movie from your list.");
       }
     })
     .catch((e) => alert(e));
