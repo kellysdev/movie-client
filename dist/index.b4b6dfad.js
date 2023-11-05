@@ -27418,7 +27418,7 @@ const MovieCard = ({ movie })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                to: `/movies/${encodeURIComponent(movie._id)}`,
+                to: `/movies/${encodeURIComponent(movie.Title)}`,
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                     variant: "warning",
                     children: "Open"
@@ -47446,20 +47446,20 @@ var _s = $RefreshSig$();
 const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovies })=>{
     _s();
     const { movieId } = (0, _reactRouter.useParams)();
-    const movie = movies.find((m)=>m._id === movieId);
+    const movie = movies.find((m)=>m.Title === movieId);
     const handleAddFavorite = (event)=>{
         event.preventDefault();
-        fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
+        fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
-            if (response.ok && favoriteMovies.includes(movie._id)) {
+            if (response.ok && favoriteMovies.includes(movieId)) {
                 alert("This movie is already in your list");
                 return false;
             } else if (response.ok) {
-                console.log("movie id:", movie._id);
+                console.log("movie id:", movieId);
                 setFavoriteMovies((prev)=>[
                         movie,
                         ...prev
@@ -47473,14 +47473,14 @@ const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovies })=>
     };
     const handleRemoveFavorite = (event)=>{
         event.preventDefault();
-        fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
+        fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
-            if (favoriteMovies.includes(movie._id)) {
-                setFavoriteMovies((prev)=>prev.filter((favoriteMovie)=>favoriteMovie !== movie._id));
+            if (favoriteMovies.includes(movieId)) {
+                setFavoriteMovies((prev)=>prev.filter((favoriteMovie)=>favoriteMovie !== movieId));
                 alert("This movie has been removed from your list.");
             } else alert("Could not remove the movie from your list.");
         }).catch((e)=>alert(e));
