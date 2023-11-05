@@ -15,9 +15,13 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
   const [validated, setValidated] = useState(false);
 
   const favoriteMovieObjects = favoriteMovies.map(favoriteMovie => {
-    const movieObject = movies.find(movie => movie._id === favoriteMovie);
-    return movieObject;
-  })
+    if (favoriteMovies.length === 0) {
+      return;
+    } else {
+      const movieObject = movies.find(movie => movie._id === favoriteMovie);
+      return movieObject;
+    }
+  });
 
   const validate = () => {
     const newErrors = {}
@@ -192,7 +196,7 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
           <Row>
               <h3>Favorite Movies</h3>
               {favoriteMovieObjects.map((movie) => (
-                <Col className="mb-5" key={movie._id} sm={4}>
+                <Col className="mb-5" key={favoriteMovieObjects._id} sm={4}>
                   <MovieCard 
                     movie={movie}
                    />

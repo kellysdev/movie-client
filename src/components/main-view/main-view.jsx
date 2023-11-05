@@ -8,7 +8,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ProfileView } from "../profile-view/profile-view";
-// import { response } from "express";
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
