@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ProfileView } from "../profile-view/profile-view";
+// import { response } from "express";
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -15,6 +16,7 @@ const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
     // if a user logs in and generates a token: use token to fetch movies from the database, set movies to array, store token
@@ -30,7 +32,21 @@ const MainView = () => {
     });
   }, [token]);
 
-  const favoriteMovies = movies.filter((movie) => user?.FavoriteMovies?.includes(movie._id));
+  useEffect(() => {
+    if (!token) return;
+
+    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
+      headers: {Authorization: `Bearer ${token}`}
+    })
+    .then((response) => response.json())
+    .then((user) => {
+      setFavoriteMovies(user.FavoriteMovies);
+    })
+    .catch((e) => {
+      console.log(e.message);
+      alert("Could not get favorite movies.");
+    })
+  }, [user.FavoriteMovies]);
 
   return (
     <BrowserRouter>
@@ -89,6 +105,7 @@ const MainView = () => {
                     user={user} 
                     token={token}
                     favoriteMovies={favoriteMovies}
+                    setFavoriteMovies={setFavoriteMovies}
                      />
                   </Col>
                 )}

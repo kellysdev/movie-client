@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 
-export const MovieView = ({ movies, user, token, favoriteMovies }) => {
+export const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovies }) => {
   const {movieId} = useParams();
   const movie = movies.find((m) => m._id === movieId);
 
@@ -21,7 +21,7 @@ export const MovieView = ({ movies, user, token, favoriteMovies }) => {
         return false;
       } else if (response.ok) {
         console.log("movie id:", movie._id);
-        favoriteMovies.push(movie);
+        setFavoriteMovies(prev => [movie, ...prev]);
         alert("This movie has been added to your list");
       } else {
         alert("Something went wrong.");
@@ -40,9 +40,7 @@ export const MovieView = ({ movies, user, token, favoriteMovies }) => {
     })
     .then((response) => {
       if (favoriteMovies.includes(movie._id)) {
-        let index = favoriteMovies.indexOf(movie._id);
-        let badMovie = favoriteMovies.splice(index, 1);
-        console.log(badMovie);
+        setFavoriteMovies(prev => prev.filter(favoriteMovie => favoriteMovie !== movie._id));
         alert("This movie has been removed from your list.");
       } else {
         alert("Could not remove the movie from your list.");
