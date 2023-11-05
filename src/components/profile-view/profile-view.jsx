@@ -5,7 +5,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
 
-export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMovies }) => {
+export const ProfileView = ({ user, token, setUser, setToken, movie, movies, favoriteMovies }) => {
   const [Username, setUsername] = useState(user.Username);
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState(user.Email);
@@ -13,6 +13,11 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [validated, setValidated] = useState(false);
+
+  const favoriteMovieObjects = favoriteMovies.map(favoriteMovie => {
+    const movieObject = movies.find(movie => movie._id === favoriteMovie);
+    return movieObject;
+  })
 
   const validate = () => {
     const newErrors = {}
@@ -31,9 +36,6 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
 
     return newErrors
   };
-
-  // ASCII codes for numbers, upper case, and lower case:
-  // (key >= 48 && key <= 57) || (key >= 65 && key <= 92) || (key >= 97 && key <= 124)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -189,9 +191,11 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, favoriteMov
         <Col>
           <Row>
               <h3>Favorite Movies</h3>
-              {favoriteMovies.map((movie) => (
+              {favoriteMovieObjects.map((movie) => (
                 <Col className="mb-5" key={movie._id} sm={4}>
-                  <MovieCard movie={movie} />
+                  <MovieCard 
+                    movie={movie}
+                   />
                 </Col>
               ))}
           </Row>
