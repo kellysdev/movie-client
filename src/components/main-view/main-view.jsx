@@ -45,7 +45,7 @@ const MainView = () => {
       console.log(e.message);
       alert("Could not get favorite movies.");
     })
-  }, [user.FavoriteMovies]);
+  }, [favoriteMovies]);
 
   return (
     <BrowserRouter>
@@ -54,6 +54,7 @@ const MainView = () => {
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
+          setFavoriteMovies([]);
           localStorage.clear();
         }}
       />
