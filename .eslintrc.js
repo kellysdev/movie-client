@@ -31,6 +31,6 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/prop-types": enabled
+        "react/prop-types": "enabled"
     }
 }
