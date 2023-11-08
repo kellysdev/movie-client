@@ -6,21 +6,21 @@ import { useParams } from "react-router";
 
 export const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovies }) => {
   const {movieId} = useParams();
-  const movie = movies.find((m) => m.Title === movieId);
+  const movie = movies.find((m) => m._id === movieId);
 
   const handleAddFavorite = (event) => {
     event.preventDefault();
 
-    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => {
-      if (response.ok && favoriteMovies.includes(movieId)) {
+      if (response.ok && favoriteMovies.includes(movie._id)) {
         alert("This movie is already in your list");
         return false;
       } else if (response.ok) {
-        console.log("movie id:", movieId);
+        console.log("movie id:", movie._id);
         setFavoriteMovies(prev => [movie, ...prev]);
         alert("This movie has been added to your list");
       } else {
@@ -34,13 +34,13 @@ export const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovi
   const handleRemoveFavorite = (event) => {
     event.preventDefault();
 
-    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}`}
     })
     .then((response) => {
-      if (favoriteMovies.includes(movieId)) {
-        setFavoriteMovies(prev => prev.filter(favoriteMovie => favoriteMovie !== movieId));
+      if (favoriteMovies.includes(movie._id)) {
+        setFavoriteMovies(prev => prev.filter(favoriteMovie => favoriteMovie !== movie._id));
         alert("This movie has been removed from your list.");
       } else {
         alert("Could not remove the movie from your list.");
