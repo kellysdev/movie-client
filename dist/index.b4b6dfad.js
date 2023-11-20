@@ -47825,7 +47825,7 @@ const SignupView = ()=>{
     const [Password, setPassword] = (0, _react.useState)("");
     const [Email, setEmail] = (0, _react.useState)("");
     const [Birthday, setBirthday] = (0, _react.useState)("");
-    handleSubmit = (event)=>{
+    const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
             Username: Username,
