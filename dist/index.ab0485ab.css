@@ -13345,6 +13345,10 @@ textarea.form-control-lg {
   }
 }
 
-
+.deregister {
+  color: red;
+  text-align: right;
+  text-decoration: none;
+}
 
 /*# sourceMappingURL=index.ab0485ab.css.map */

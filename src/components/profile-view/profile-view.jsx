@@ -114,7 +114,7 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
       <Row>
         <Col>
           <Row>
-            <h3>User Information</h3>
+            <h3>Account Information</h3>
             <p>
               Username: {user.Username}<br />
               Email: {user.Email}<br />
@@ -123,72 +123,72 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
           </Row>
 
           <Row>
-            <h5>Update your information:</h5>
-            <Form noValidate onSubmit={handleSubmit}>
+            <Col>
+              <h5>Update your account:</h5>
+              <Form noValidate onSubmit={handleSubmit}>
 
-            <InputGroup hasValidation>
-              <Form.Group>
-                <Form.Label>Username:</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => setUsername( e.target.value)}
-                  required
-                  minLength="3"
-                  isInvalid={errors.Username}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.Username}
-                </Form.Control.Feedback>
-              </Form.Group>
+                <InputGroup hasValidation>
+                  <Form.Group>
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                      type="text"
+                      onChange={(e) => setUsername( e.target.value)}
+                      required
+                      minLength="3"
+                      isInvalid={errors.Username}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.Username}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
+                  <Form.Group>
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                      type="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      isInvalid={errors.Password}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.Password}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-              <Form.Group>
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  isInvalid={errors.Password}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.Password}
-                </Form.Control.Feedback>
-              </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Email:</Form.Label>
+                    <Form.Control
+                      type="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      isInvalid={errors.Email}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.Email}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-              <Form.Group>
-                <Form.Label>Email:</Form.Label>
-                <Form.Control
-                  type="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  isInvalid={errors.Email}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.Email}
-                </Form.Control.Feedback>
-              </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Birthday:</Form.Label>
+                    <Form.Control
+                      type="date"
+                      onChange={(e) => setBirthday(e.target.value)}
+                      required
+                      isInvalid={errors.Birthday}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.Birthday}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </InputGroup>
 
-              <Form.Group>
-                <Form.Label>Birthday:</Form.Label>
-                <Form.Control
-                  type="date"
-                  onChange={(e) => setBirthday(e.target.value)}
-                  required
-                  isInvalid={errors.Birthday}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.Birthday}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </InputGroup>
-
-              <Button type="submit" variant="warning">Submit</Button>
-          </Form>
+                <Button type="submit" variant="warning">Update</Button>
+              </Form>
+            </Col>
           </Row>
 
           <Row>
-            <h5>Deregister:</h5>
-            <Button onClick={handleShowModal} variant="warning">Click Here</Button>
+            <Button onClick={handleShowModal} variant="link" className="deregister">Remove account permanently</Button>
           </Row>
         </Col>
 
