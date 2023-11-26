@@ -4,6 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { SearchBar } from "../search-bar/search-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -122,13 +123,23 @@ const MainView = () => {
                 ) : movies.length === 0 ? (
                   <div>The list is empty!</div>
                 ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-5" key={movie._id} xs={3}>
-                        <MovieCard movie={movie} />
+                  <Col>
+                    <Row>
+                      <Col className="my-5 mx-auto col-3 justify-content-center" >
+                        <SearchBar 
+                        movies={movies}
+                        setMovies={setMovies}
+                        />
                       </Col>
-                    ))}
-                  </>
+                    </Row>
+                    <Row>
+                      {movies.map((movie) => (
+                        <Col className="mb-5" key={movie._id} xs={3}>
+                          <MovieCard movie={movie} />
+                        </Col>
+                      ))}
+                    </Row>
+                  </Col>
                 )}
               </>
             }
