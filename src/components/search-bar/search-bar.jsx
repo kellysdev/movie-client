@@ -1,12 +1,14 @@
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const SearchBar = ({ token }) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchableMovies, setSearchableMovies] =  useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
 
-  getData = () => {
+  // add validation
+
+  useEffect(() => {
     fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies", {
       headers: {Authorization: `Bearer ${token}`}
     })
@@ -18,15 +20,7 @@ export const SearchBar = ({ token }) => {
       console.log(e.message);
       alert("Could not search movies.");
     })
-  };
-
-  const componentWillMount =() => {
-    getData();
-  };
-
-  componentWillMount();
-
-  // add validation
+  }, [searchInput]);
 
   filterArray = () => {
     let filteredMovieObject = searchableMovies.find(searchableMovie => searchableMovie.Title == searchInput);

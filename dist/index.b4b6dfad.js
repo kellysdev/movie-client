@@ -48580,7 +48580,8 @@ const SearchBar = ({ token })=>{
     const [searchInput, setSearchInput] = (0, _react.useState)("");
     const [searchableMovies, setSearchableMovies] = (0, _react.useState)([]);
     const [filteredMovies, setFilteredMovies] = (0, _react.useState)([]);
-    getData = ()=>{
+    // add validation
+    (0, _react.useEffect)(()=>{
         fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies", {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -48591,12 +48592,9 @@ const SearchBar = ({ token })=>{
             console.log(e.message);
             alert("Could not search movies.");
         });
-    };
-    const componentWillMount = ()=>{
-        getData();
-    };
-    componentWillMount();
-    // add validation
+    }, [
+        searchInput
+    ]);
     filterArray = ()=>{
         let filteredMovieObject = searchableMovies.find((searchableMovie)=>searchableMovie.Title == searchInput);
         if (searchInput.length > 0 && searchInput == filteredMovieObject) {
@@ -48620,16 +48618,16 @@ const SearchBar = ({ token })=>{
             "aria-label": "Search"
         }, void 0, false, {
             fileName: "src/components/search-bar/search-bar.jsx",
-            lineNumber: 49,
+            lineNumber: 43,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/search-bar/search-bar.jsx",
-        lineNumber: 48,
+        lineNumber: 42,
         columnNumber: 5
     }, undefined);
 };
-_s(SearchBar, "Q9ohWaUV40BsrAXfks0+UFzRNEg=");
+_s(SearchBar, "ryUSqA2fHo/MXhoKvw2ZCxg9Bso=");
 _c = SearchBar;
 var _c;
 $RefreshReg$(_c, "SearchBar");
