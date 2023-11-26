@@ -27326,19 +27326,24 @@ const MainView = ()=>{
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                                 className: "my-4 mx-auto col-3 justify-content-center",
                                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchBar.SearchBar), {
-                                                    movies: movies,
-                                                    setMovies: setMovies
+                                                    token: token
                                                 }, void 0, false, void 0, void 0)
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, void 0, void 0),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                                            children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                            children: (0, _searchBar.filteredMovies).length === 0 ? movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                                     className: "mb-5",
                                                     xs: 3,
                                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                                         movie: movie
                                                     }, void 0, false, void 0, void 0)
-                                                }, movie._id, false, void 0, void 0))
+                                                }, movie._id, false, void 0, void 0)) : (0, _searchBar.filteredMovies).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                                    className: "mb-5",
+                                                    xs: 3,
+                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                                        movie: movie
+                                                    }, void 0, false, void 0, void 0)
+                                                }, (0, _searchBar.filteredMovies).Title, false, void 0, void 0))
                                         }, void 0, false, void 0, void 0)
                                     ]
                                 }, void 0, true, void 0, void 0)
@@ -27365,7 +27370,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 148,
+                            lineNumber: 154,
                             columnNumber: 11
                         }, undefined)
                     ]
@@ -48568,25 +48573,63 @@ parcelHelpers.export(exports, "SearchBar", ()=>SearchBar);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
-const SearchBar = ({})=>{
+var _react = require("react");
+var _s = $RefreshSig$();
+const SearchBar = ({ token })=>{
+    _s();
+    const [searchInput, setSearchInput] = (0, _react.useState)("");
+    const [searchableMovies, setSearchableMovies] = (0, _react.useState)([]);
+    const [filteredMovies, setFilteredMovies] = (0, _react.useState)([]);
+    getData = ()=>{
+        fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>response.json()).then((movies)=>{
+            setSearchableMovies(movies);
+        }).catch((e)=>{
+            console.log(e.message);
+            alert("Could not search movies.");
+        });
+    };
+    const componentWillMount = ()=>{
+        getData();
+    };
+    componentWillMount();
+    // add validation
+    filterArray = ()=>{
+        let filteredMovieObject = searchableMovies.find((searchableMovie)=>searchableMovie.Title == searchInput);
+        if (searchInput.length > 0 && searchInput == filteredMovieObject) {
+            setFilteredMovies(filteredMovieObject);
+            return filteredMovies;
+        } else {
+            setFilteredMovies([]);
+            return filteredMovies;
+        }
+    };
+    handleInputChange = (e)=>{
+        setSearchInput(e.target.value);
+        filterArray();
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
             type: "search",
             placeholder: "Search",
             size: "sm",
-            // onChange={handleInputChange}
+            onChange: handleInputChange,
             "aria-label": "Search"
         }, void 0, false, {
             fileName: "src/components/search-bar/search-bar.jsx",
-            lineNumber: 6,
+            lineNumber: 49,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/search-bar/search-bar.jsx",
-        lineNumber: 5,
+        lineNumber: 48,
         columnNumber: 5
     }, undefined);
 };
+_s(SearchBar, "Q9ohWaUV40BsrAXfks0+UFzRNEg=");
 _c = SearchBar;
 var _c;
 $RefreshReg$(_c, "SearchBar");
@@ -48596,6 +48639,6 @@ $RefreshReg$(_c, "SearchBar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"i5LP7":[function() {},{}],"lJZlQ":[function() {},{}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire315a")
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap/Form":"iBZ80","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"i5LP7":[function() {},{}],"lJZlQ":[function() {},{}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire315a")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

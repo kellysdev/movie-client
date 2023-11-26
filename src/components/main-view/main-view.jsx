@@ -4,7 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import { SearchBar } from "../search-bar/search-bar";
+import { SearchBar, filteredMovies } from "../search-bar/search-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -126,18 +126,24 @@ const MainView = () => {
                   <Col>
                     <Row>
                       <Col className="my-4 mx-auto col-3 justify-content-center" >
-                        <SearchBar 
-                        movies={movies}
-                        setMovies={setMovies}
+                        <SearchBar
+                          token={token}
                         />
                       </Col>
                     </Row>
                     <Row>
-                      {movies.map((movie) => (
+                      {filteredMovies.length === 0 ? (
+                        movies.map((movie) => (
                         <Col className="mb-5" key={movie._id} xs={3}>
                           <MovieCard movie={movie} />
                         </Col>
-                      ))}
+                      ))) : (
+                        filteredMovies.map((movie) => (
+                        <Col className="mb-5" key={filteredMovies.Title} xs={3}>
+                          <MovieCard movie={movie} />
+                        </Col>
+                      )))
+                      }
                     </Row>
                   </Col>
                 )}
