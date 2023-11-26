@@ -125,7 +125,7 @@ const MainView = () => {
                 ) : (
                   <Col>
                     <Row>
-                      <Col className="my-5 mx-auto col-3 justify-content-center" >
+                      <Col className="my-4 mx-auto col-3 justify-content-center" >
                         <SearchBar 
                         movies={movies}
                         setMovies={setMovies}

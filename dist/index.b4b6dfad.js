@@ -27324,7 +27324,7 @@ const MainView = ()=>{
                                     children: [
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                                className: "my-5 mx-auto col-3 justify-content-center",
+                                                className: "my-4 mx-auto col-3 justify-content-center",
                                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchBar.SearchBar), {
                                                     movies: movies,
                                                     setMovies: setMovies
