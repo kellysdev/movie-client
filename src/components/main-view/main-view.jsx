@@ -50,15 +50,6 @@ const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar 
-        user={user}
-        onLoggedOut={() => {
-          setUser(null);
-          setToken(null);
-          setFavoriteMovies([]);
-          localStorage.clear();
-        }}
-      />
       <Row className="justify-content-sm-center">
         <Routes>
           <Route
@@ -100,15 +91,26 @@ const MainView = () => {
                 ) : movies.length === 0 ? (
                   <div>The list is empty!</div>
                 ) : (
-                  <Col md={8}>
-                    <MovieView 
-                    movies={movies} 
-                    user={user} 
-                    token={token}
-                    favoriteMovies={favoriteMovies}
-                    setFavoriteMovies={setFavoriteMovies}
-                     />
-                  </Col>
+                  <>
+                    <NavigationBar 
+                      user={user}
+                      onLoggedOut={() => {
+                        setUser(null);
+                        setToken(null);
+                        setFavoriteMovies([]);
+                        localStorage.clear();
+                      }}
+                    />
+                    <Col md={8}>
+                      <MovieView 
+                      movies={movies} 
+                      user={user} 
+                      token={token}
+                      favoriteMovies={favoriteMovies}
+                      setFavoriteMovies={setFavoriteMovies}
+                      />
+                    </Col>
+                  </>
                 )}
               </>
             }
@@ -124,6 +126,17 @@ const MainView = () => {
                   <div>The list is empty!</div>
                 ) : (
                   <Col>
+                    <Row>
+                      <NavigationBar 
+                        user={user}
+                        onLoggedOut={() => {
+                          setUser(null);
+                          setToken(null);
+                          setFavoriteMovies([]);
+                          localStorage.clear();
+                        }}
+                      />
+                    </Row>
                     <Row>
                       <Col className="my-4 mx-auto col-3 justify-content-center" >
                         <SearchBar
@@ -157,14 +170,25 @@ const MainView = () => {
               {!user ? (
                 <Navigate to="/login" replace />
               ) : (
-                <ProfileView 
-                  movies={movies} 
-                  user={user} 
-                  token={token}
-                  favoriteMovies={favoriteMovies}
-                  setUser={setUser}
-                  setToken={setToken}
-                 />
+                <>
+                  <NavigationBar 
+                    user={user}
+                    onLoggedOut={() => {
+                      setUser(null);
+                      setToken(null);
+                      setFavoriteMovies([]);
+                      localStorage.clear();
+                    }}
+                  />
+                  <ProfileView 
+                    movies={movies} 
+                    user={user} 
+                    token={token}
+                    favoriteMovies={favoriteMovies}
+                    setUser={setUser}
+                    setToken={setToken}
+                  />
+                </>
               )}
               </>
             }
