@@ -48618,8 +48618,9 @@ const SearchBar = ({ token })=>{
         searchInput
     ]);
     filterArray = ()=>{
-        let filteredMovieObject = searchableMovies.find((searchableMovie)=>searchableMovie.Title == searchInput);
-        if (searchInput.length > 0 && searchInput == filteredMovieObject) {
+        let filteredMovieObject = searchableMovies.map((searchableMovie)=>searchableMovie.Title.toLowerCase() == searchInput.toLowerCase());
+        console.log(filteredMovieObject);
+        if (searchInput.length > 0 && filteredMovieObject) {
             setFilteredMovies(filteredMovieObject);
             return filteredMovies;
         } else {
@@ -48640,12 +48641,12 @@ const SearchBar = ({ token })=>{
             "aria-label": "Search"
         }, void 0, false, {
             fileName: "src/components/search-bar/search-bar.jsx",
-            lineNumber: 43,
+            lineNumber: 46,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/search-bar/search-bar.jsx",
-        lineNumber: 42,
+        lineNumber: 45,
         columnNumber: 5
     }, undefined);
 };

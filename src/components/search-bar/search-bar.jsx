@@ -23,8 +23,11 @@ export const SearchBar = ({ token }) => {
   }, [searchInput]);
 
   filterArray = () => {
-    let filteredMovieObject = searchableMovies.find(searchableMovie => searchableMovie.Title == searchInput);
-    if(searchInput.length > 0 && searchInput == filteredMovieObject) {
+    let filteredMovieObject = searchableMovies.map(searchableMovie => 
+      searchableMovie.Title.toLowerCase() == searchInput.toLowerCase());
+    console.log(filteredMovieObject);
+
+    if(searchInput.length > 0 && filteredMovieObject) {
       setFilteredMovies(filteredMovieObject);
       return filteredMovies;
     } else {
