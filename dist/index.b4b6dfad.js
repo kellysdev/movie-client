@@ -27208,8 +27208,8 @@ const MainView = ()=>{
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [movies, setMovies] = (0, _react.useState)([]);
     const [favoriteMovies, setFavoriteMovies] = (0, _react.useState)([]);
+    const [searchInput, setSearchInput] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
-        // if a user logs in and generates a token: use token to fetch movies from the database, set movies to array, store token
         if (!token) return;
         fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies", {
             headers: {
@@ -27254,7 +27254,7 @@ const MainView = ()=>{
                         }, void 0, false)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 55,
+                        lineNumber: 56,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27271,7 +27271,7 @@ const MainView = ()=>{
                         }, void 0, false)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 70,
+                        lineNumber: 71,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27308,7 +27308,7 @@ const MainView = ()=>{
                         }, void 0, false)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 85,
+                        lineNumber: 86,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27336,31 +27336,32 @@ const MainView = ()=>{
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                             className: "my-4 mx-auto col-3 justify-content-center",
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchBar.SearchBar), {
-                                                token: token
+                                                onSearchTermChange: (searchInput)=>{
+                                                    console.log(searchInput);
+                                                    setSearchInput(searchInput);
+                                                },
+                                                searchInput: searchInput
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, void 0, void 0)
                                     }, void 0, false, void 0, void 0),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                                        children: (0, _searchBar.filteredMovies).length === 0 ? movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                        children: movies.filter((movie)=>{
+                                            if (!searchInput) return true;
+                                            else return movie.Title.toLowerCase().includes(searchInput.toLowerCase());
+                                        }).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                                 className: "mb-5",
                                                 xs: 3,
                                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                                     movie: movie
                                                 }, void 0, false, void 0, void 0)
-                                            }, movie._id, false, void 0, void 0)) : (0, _searchBar.filteredMovies).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                                className: "mb-5",
-                                                xs: 3,
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                                    movie: movie
-                                                }, void 0, false, void 0, void 0)
-                                            }, (0, _searchBar.filteredMovies).Title, false, void 0, void 0))
+                                            }, movie._id, false, void 0, void 0))
                                     }, void 0, false, void 0, void 0)
                                 ]
                             }, void 0, true, void 0, void 0)
                         }, void 0, false)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 119,
+                        lineNumber: 120,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27393,27 +27394,27 @@ const MainView = ()=>{
                         }, void 0, false)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 166,
+                        lineNumber: 173,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 54,
+                lineNumber: 55,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 53,
+            lineNumber: 54,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 52,
+        lineNumber: 53,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "Bfw8gLlzWGRJGFcLZ3x0z/6o5xQ=");
+_s(MainView, "s5vrokADdDzdb+gI8uOcoCZh0YI=");
 _c = MainView;
 exports.default = MainView;
 var _c;
@@ -48595,42 +48596,9 @@ parcelHelpers.export(exports, "SearchBar", ()=>SearchBar);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
-var _react = require("react");
-var _s = $RefreshSig$();
-const SearchBar = ({ token })=>{
-    _s();
-    const [searchInput, setSearchInput] = (0, _react.useState)("");
-    const [searchableMovies, setSearchableMovies] = (0, _react.useState)([]);
-    const [filteredMovies, setFilteredMovies] = (0, _react.useState)([]);
-    // add validation
-    (0, _react.useEffect)(()=>{
-        fetch("https://popopolis-f7a904c7cad0.herokuapp.com/movies", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>response.json()).then((movies)=>{
-            setSearchableMovies(movies);
-        }).catch((e)=>{
-            console.log(e.message);
-            alert("Could not search movies.");
-        });
-    }, [
-        searchInput
-    ]);
-    filterArray = ()=>{
-        let filteredMovieObject = searchableMovies.map((searchableMovie)=>searchableMovie.Title.toLowerCase() == searchInput.toLowerCase());
-        console.log(filteredMovieObject);
-        if (searchInput.length > 0 && filteredMovieObject) {
-            setFilteredMovies(filteredMovieObject);
-            return filteredMovies;
-        } else {
-            setFilteredMovies([]);
-            return filteredMovies;
-        }
-    };
+const SearchBar = ({ onSearchTermChange, searchInput })=>{
     handleInputChange = (e)=>{
-        setSearchInput(e.target.value);
-        filterArray();
+        onSearchTermChange(e.target.value);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -48641,16 +48609,15 @@ const SearchBar = ({ token })=>{
             "aria-label": "Search"
         }, void 0, false, {
             fileName: "src/components/search-bar/search-bar.jsx",
-            lineNumber: 46,
+            lineNumber: 10,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/search-bar/search-bar.jsx",
-        lineNumber: 45,
+        lineNumber: 9,
         columnNumber: 5
     }, undefined);
 };
-_s(SearchBar, "ryUSqA2fHo/MXhoKvw2ZCxg9Bso=");
 _c = SearchBar;
 var _c;
 $RefreshReg$(_c, "SearchBar");
@@ -48660,6 +48627,6 @@ $RefreshReg$(_c, "SearchBar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap/Form":"iBZ80","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"i5LP7":[function() {},{}],"lJZlQ":[function() {},{}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire315a")
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"i5LP7":[function() {},{}],"lJZlQ":[function() {},{}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequire315a")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
