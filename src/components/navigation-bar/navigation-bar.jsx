@@ -5,7 +5,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
     <Navbar expand="sm" bg="light">
       <Container>
-        <Navbar.Brand to="/">Popopolis</Navbar.Brand>
+        <Navbar.Brand to="/">PopOpolis</Navbar.Brand>
         <Nav>
           {!user && (
             <>
