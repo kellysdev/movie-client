@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
     <Navbar expand="sm" bg="light">
-      <Container className="container-fluid">
+      <Container>
         <Navbar.Brand to="/">PopOpolis</Navbar.Brand>
         <Nav className="container-fluid">
           {!user && (
@@ -18,9 +18,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
               <Nav className="container-fluid">
                 <Nav.Link as={Link} to="/" className="ml-auto">Home</Nav.Link>
                 <Nav.Link as={Link} to="/profile" className="ml-auto">Profile</Nav.Link>
-              </Nav>
-              <Nav>
-                <Nav.Link onClick={onLoggedOut} className="justify-content-end">Logout</Nav.Link>
+                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
               </Nav>
             </>
           )}
