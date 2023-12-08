@@ -47778,53 +47778,38 @@ const LoginView = ({ onLoggedIn })=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                         controlId: "formUsername",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                children: "Username:"
-                            }, void 0, false, {
-                                fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 52,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                type: "text",
-                                value: Username,
-                                onChange: (e)=>setUsername(e.target.value),
-                                required: true,
-                                minLength: "3"
-                            }, void 0, false, {
-                                fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 53,
-                                columnNumber: 11
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                            type: "text",
+                            value: Username,
+                            placeholder: "Username",
+                            onChange: (e)=>setUsername(e.target.value),
+                            required: true,
+                            minLength: "3"
+                        }, void 0, false, {
+                            fileName: "src/components/login-view/login-view.jsx",
+                            lineNumber: 52,
+                            columnNumber: 11
+                        }, undefined)
+                    }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
                         lineNumber: 51,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                         controlId: "formPassword",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                children: "Password:"
-                            }, void 0, false, {
-                                fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 63,
-                                columnNumber: 11
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                type: "password",
-                                value: Password,
-                                onChange: (e)=>setPassword(e.target.value),
-                                required: true
-                            }, void 0, false, {
-                                fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 64,
-                                columnNumber: 11
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                            className: "mt-3",
+                            type: "password",
+                            value: Password,
+                            placeholder: "Password",
+                            onChange: (e)=>setPassword(e.target.value),
+                            required: true
+                        }, void 0, false, {
+                            fileName: "src/components/login-view/login-view.jsx",
+                            lineNumber: 63,
+                            columnNumber: 11
+                        }, undefined)
+                    }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
                         lineNumber: 62,
                         columnNumber: 9
