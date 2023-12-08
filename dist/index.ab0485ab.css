@@ -13351,6 +13351,15 @@ textarea.form-control-lg {
   text-decoration: none;
 }
 
+.welcome-links {
+  text-align: right;
+  text-decoration: none;
+}
+
+.welcome-buttons {
+  text-align: right;
+}
+
 .navbar-brand {
   font-family: Limelight, sans-serif;
 }

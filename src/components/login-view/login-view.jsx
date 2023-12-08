@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import { Link }from "react-router-dom";
 import { Logo } from "../logo/logo.jsx";
 
 export const LoginView = ({ onLoggedIn }) => {
@@ -67,7 +69,14 @@ export const LoginView = ({ onLoggedIn }) => {
           />
         </Form.Group>
 
-        <Button type="submit" variant="warning">Submit</Button>
+        <Container className="welcome-buttons mt-3">
+          <Button type="submit" variant="warning" className="">Login</Button>
+        </Container>
+        <Container className="d-grid">
+          <Link className="welcome-links mt-3" to="/signup">
+            Don't have an account?
+          </Link>
+        </Container>
 
       </Form>
     </>
