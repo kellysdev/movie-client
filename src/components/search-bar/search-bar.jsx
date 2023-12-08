@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 
 export const SearchBar = ({ onSearchTermChange, searchInput }) => {
-  handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     onSearchTermChange(e.target.value);
   };
 
