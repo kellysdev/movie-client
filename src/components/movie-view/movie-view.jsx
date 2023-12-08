@@ -1,7 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Button, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router";
 
 export const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovies }) => {
@@ -50,35 +48,36 @@ export const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovi
   };
 
   return (
-    <div>
-      <div>
-        <img src={movie.ImagePath} />
-      </div>
-      <div>
-        <span><h3>{movie.Title}</h3></span>
-      </div>
-      <div>
-        <span>{movie.ReleaseDate}</span><br />
-        <span>{movie.Description}</span><br /><br />
-        <span>Genre: </span>
-        <span>{movie.Genre.Name}</span>
-        <br />
-        <span>Director: </span>
-        <span>{movie.Director.Name}</span>
-        <br />
-        <span>Actors: </span>
-        <span>{movie.Actors.join(", ")}</span>
-      </div>
-     
-      <div className="d-flex flex-wrap">
-        <Button onClick={handleAddFavorite} className="p-2" variant="warning">Add to Favorites</Button>
-        <Button onClick={handleRemoveFavorite} className="p-2" variant="warning">Remove from Favorites</Button>
+    <>
+    <Row className="justify-content-center">
+      <Col className="col-6">
+        <Row>
+          <h3>{movie.Title}</h3>
+        </Row>
+        <Row>
+          <p>{movie.ReleaseDate}</p><br />
+          <p>{movie.Description}</p><br /><br />
+          <p>Genre: {movie.Genre.Name}<br />
+            Director: {movie.Director.Name}<br />
+            Actors: {movie.Actors.join(", ")}</p>
+        </Row>
 
-        <Link to={`/`}>
-          <Button variant="warning" className="p-2 ms-auto">Home</Button>
-        </Link>
-      </div>
+        <Row className="movieview-buttons">
+          <Button onClick={handleAddFavorite} className="p-2 m-2" variant="warning">Add to Favorites</Button>
+          <Button onClick={handleRemoveFavorite} className="p-2 m-2" variant="warning">Remove from Favorites</Button>
 
-    </div>
+          {/* <Link to={`/`}>
+            <Button variant="warning" className="p-2 ms-auto">Home</Button>
+          </Link> */}
+        </Row>
+      </Col>
+
+      <Col className="col-1"></Col>
+
+      <Col className="col-5">
+        <img className="movieview-image" src={movie.ImagePath} />
+      </Col>
+    </Row>
+    </>
   );
 };

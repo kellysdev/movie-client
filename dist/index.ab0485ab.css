@@ -13369,4 +13369,14 @@ textarea.form-control-lg {
   font-family: Limelight, sans-serif;
 }
 
+.movieview-image {
+  object-fit: fit;
+  width: 30vw;
+  height: 40vw;
+}
+
+.movieview-buttons {
+  text-align: center;
+}
+
 /*# sourceMappingURL=index.ab0485ab.css.map */
