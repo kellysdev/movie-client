@@ -139,7 +139,7 @@ const MainView = () => {
                       />
                     </Row>
                     <Row>
-                      <Col className="my-4 mx-auto col-3 justify-content-center" >
+                      <Col className="my-4 mx-auto col-5 col-md-4 justify-content-center" >
                         <SearchBar
                           onSearchTermChange={(searchInput) => {
                             console.log(searchInput);

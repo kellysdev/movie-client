@@ -27334,7 +27334,7 @@ const MainView = ()=>{
                                     }, void 0, false, void 0, void 0),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                            className: "my-4 mx-auto col-3 justify-content-center",
+                                            className: "my-4 mx-auto col-5 col-md-4 justify-content-center",
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchBar.SearchBar), {
                                                 onSearchTermChange: (searchInput)=>{
                                                     console.log(searchInput);
