@@ -13345,6 +13345,28 @@ textarea.form-control-lg {
   }
 }
 
+.deregister {
+  color: red;
+  text-align: right;
+  text-decoration: none;
+}
 
+.welcome-links {
+  text-align: right;
+  text-decoration: none;
+}
+
+.welcome-buttons {
+  text-align: right;
+}
+
+.navbar-brand {
+  font-family: Limelight, sans-serif;
+}
+
+.logo {
+  text-align: center;
+  font-family: Limelight, sans-serif;
+}
 
 /*# sourceMappingURL=index.ab0485ab.css.map */

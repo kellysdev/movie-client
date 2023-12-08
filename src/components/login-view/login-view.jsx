@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import { Link }from "react-router-dom";
+import { Logo } from "../logo/logo.jsx";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [Username, setUsername] = useState("");
@@ -40,31 +43,42 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <>
+      <Logo />
 
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control 
-          type="text"
-          value={Username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="3"
-         />
-      </Form.Group>
-      
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control 
-          type="password"
-          value={Password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-         />
-      </Form.Group>
+      <Form onSubmit={handleSubmit}>
 
-      <Button type="submit" variant="warning">Submit</Button>
+        <Form.Group controlId="formUsername">
+          <Form.Control 
+            type="text"
+            value={Username}
+            placeholder="Username"
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            minLength="3"
+          />
+        </Form.Group>
+        
+        <Form.Group controlId="formPassword">
+          <Form.Control className="mt-3"
+            type="password"
+            value={Password}
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </Form.Group>
 
-    </Form>
+        <Container className="welcome-buttons mt-3">
+          <Button type="submit" variant="warning" className="">Login</Button>
+        </Container>
+        <Container className="d-grid">
+          <Link className="welcome-links mt-3" to="/signup">
+            Don't have an account?
+          </Link>
+        </Container>
+
+      </Form>
+    </>
   )
 };

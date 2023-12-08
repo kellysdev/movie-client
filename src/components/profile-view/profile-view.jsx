@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
-import { MovieCard } from "../movie-card/movie-card";
 import Modal from "react-bootstrap/Modal";
+import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
+import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, token, setUser, setToken, movie, movies, favoriteMovies }) => {
+export const ProfileView = ({ user, token, setUser, setToken, movies, favoriteMovies }) => {
   const [Username, setUsername] = useState(user.Username);
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState(user.Email);
@@ -113,8 +114,8 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
     <>
       <Row>
         <Col>
-          <Row>
-            <h3>User Information</h3>
+          <Row className="my-3">
+            <h3>Account Information</h3>
             <p>
               Username: {user.Username}<br />
               Email: {user.Email}<br />
@@ -122,78 +123,82 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
             </p>  
           </Row>
 
-          <Row>
-            <h5>Update your information:</h5>
-            <Form noValidate onSubmit={handleSubmit}>
+          <Row className="my-3">
+            <Col>
+              <h5>Update your account:</h5>
+              <Form noValidate onSubmit={handleSubmit}>
 
-            <InputGroup hasValidation>
-              <Form.Group>
-                <Form.Label>Username:</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => setUsername( e.target.value)}
-                  required
-                  minLength="3"
-                  isInvalid={errors.Username}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.Username}
-                </Form.Control.Feedback>
-              </Form.Group>
+                <InputGroup hasValidation>
+                  <Form.Group>
+                    <Form.Control className="my-3"
+                      type="text"
+                      placeholder="Username"
+                      onChange={(e) => setUsername( e.target.value)}
+                      required
+                      minLength="3"
+                      isInvalid={errors.Username}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.Username}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
+                  <Form.Group>
+                    <Form.Control className="my-3"
+                      type="password"
+                      placeholder="Password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      isInvalid={errors.Password}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.Password}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-              <Form.Group>
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  isInvalid={errors.Password}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.Password}
-                </Form.Control.Feedback>
-              </Form.Group>
+                  <Form.Group>
+                    <Form.Control className="my-3"
+                      type="email"
+                      placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      isInvalid={errors.Email}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.Email}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-              <Form.Group>
-                <Form.Label>Email:</Form.Label>
-                <Form.Control
-                  type="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  isInvalid={errors.Email}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.Email}
-                </Form.Control.Feedback>
-              </Form.Group>
+                  <Form.Group>
+                    <Form.Control className="my-3"
+                      // type="date"
+                      placeholder="Birthday"
+                      onChange={(e) => setBirthday(e.target.value)}
+                      required
+                      isInvalid={errors.Birthday}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.Birthday}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </InputGroup>
 
-              <Form.Group>
-                <Form.Label>Birthday:</Form.Label>
-                <Form.Control
-                  type="date"
-                  onChange={(e) => setBirthday(e.target.value)}
-                  required
-                  isInvalid={errors.Birthday}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.Birthday}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </InputGroup>
-
-              <Button type="submit" variant="warning">Submit</Button>
-          </Form>
+                <Container className="welcome-buttons mt-3">
+                  <Button type="submit" variant="warning">Update</Button>
+                </Container>
+              </Form>
+            </Col>
           </Row>
 
           <Row>
-            <h5>Deregister:</h5>
-            <Button onClick={handleShowModal} variant="warning">Click Here</Button>
+            <Button onClick={handleShowModal} variant="link" className="deregister fs-6">Remove account permanently</Button>
           </Row>
         </Col>
 
+        <Col className="col-1"></Col>
+
         <Col>
-          <Row>
+          <Row className="my-3">
               <h3>Favorite Movies</h3>
               {favoriteMovieObjects.map((movie) => (
                 <Col className="mb-5" key={favoriteMovieObjects._id} sm={4}>
