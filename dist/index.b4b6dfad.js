@@ -47877,31 +47877,32 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Logo", ()=>Logo);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
 const Logo = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        class: "logo-container",
-        className: "m-5 px-5 py-3 lh-1",
+        className: "m-5 px-5 py-3 lh-1 logo-container",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                class: "welcome",
+                className: "fs-6",
                 children: "Welcome to"
             }, void 0, false, {
                 fileName: "src/components/logo/logo.jsx",
-                lineNumber: 4,
+                lineNumber: 6,
                 columnNumber: 5
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                class: "logo",
+                className: "logo",
                 children: "PopOpolis"
             }, void 0, false, {
                 fileName: "src/components/logo/logo.jsx",
-                lineNumber: 5,
+                lineNumber: 7,
                 columnNumber: 5
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/logo/logo.jsx",
-        lineNumber: 3,
+        lineNumber: 5,
         columnNumber: 3
     }, undefined);
 };
@@ -47914,7 +47915,7 @@ $RefreshReg$(_c, "Logo");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4OGiN":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"4OGiN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
