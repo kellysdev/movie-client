@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
-import { MovieCard } from "../movie-card/movie-card";
 import Modal from "react-bootstrap/Modal";
+import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
+import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, token, setUser, setToken, movie, movies, favoriteMovies }) => {
+export const ProfileView = ({ user, token, setUser, setToken, movies, favoriteMovies }) => {
   const [Username, setUsername] = useState(user.Username);
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState(user.Email);
@@ -113,7 +114,7 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
     <>
       <Row>
         <Col>
-          <Row>
+          <Row className="my-3">
             <h3>Account Information</h3>
             <p>
               Username: {user.Username}<br />
@@ -122,16 +123,16 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
             </p>  
           </Row>
 
-          <Row>
+          <Row className="my-3">
             <Col>
               <h5>Update your account:</h5>
               <Form noValidate onSubmit={handleSubmit}>
 
                 <InputGroup hasValidation>
                   <Form.Group>
-                    <Form.Label>Username:</Form.Label>
-                    <Form.Control
+                    <Form.Control className="my-3"
                       type="text"
+                      placeholder="Username"
                       onChange={(e) => setUsername( e.target.value)}
                       required
                       minLength="3"
@@ -143,9 +144,9 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.Label>Password:</Form.Label>
-                    <Form.Control
+                    <Form.Control className="my-3"
                       type="password"
+                      placeholder="Password"
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       isInvalid={errors.Password}
@@ -156,9 +157,9 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.Label>Email:</Form.Label>
-                    <Form.Control
+                    <Form.Control className="my-3"
                       type="email"
+                      placeholder="Email"
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       isInvalid={errors.Email}
@@ -169,9 +170,9 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.Label>Birthday:</Form.Label>
-                    <Form.Control
-                      type="date"
+                    <Form.Control className="my-3"
+                      // type="date"
+                      placeholder="Birthday"
                       onChange={(e) => setBirthday(e.target.value)}
                       required
                       isInvalid={errors.Birthday}
@@ -182,18 +183,22 @@ export const ProfileView = ({ user, token, setUser, setToken, movie, movies, fav
                   </Form.Group>
                 </InputGroup>
 
-                <Button type="submit" variant="warning">Update</Button>
+                <Container className="welcome-buttons mt-3">
+                  <Button type="submit" variant="warning">Update</Button>
+                </Container>
               </Form>
             </Col>
           </Row>
 
           <Row>
-            <Button onClick={handleShowModal} variant="link" className="deregister">Remove account permanently</Button>
+            <Button onClick={handleShowModal} variant="link" className="deregister fs-6">Remove account permanently</Button>
           </Row>
         </Col>
 
+        <Col className="col-1"></Col>
+
         <Col>
-          <Row>
+          <Row className="my-3">
               <h3>Favorite Movies</h3>
               {favoriteMovieObjects.map((movie) => (
                 <Col className="mb-5" key={favoriteMovieObjects._id} sm={4}>
