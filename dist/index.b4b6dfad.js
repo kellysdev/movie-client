@@ -48030,7 +48030,7 @@ const SignupView = ()=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                             className: "mt-3",
-                            type: "date",
+                            // type="date"
                             value: Birthday,
                             placeholder: "Birthday",
                             onChange: (e)=>setBirthday(e.target.value),

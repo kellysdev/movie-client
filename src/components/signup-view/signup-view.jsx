@@ -77,7 +77,7 @@ export const SignupView = () => {
 
         <Form.Group>
           <Form.Control className="mt-3"
-          type="date"
+          // type="date"
           value={Birthday}
           placeholder="Birthday"
           onChange={(e) => setBirthday(e.target.value)}
