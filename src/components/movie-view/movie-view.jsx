@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router";
 
-export const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovies }) => {
+export const MovieView = ({ movies, user, setUser, token }) => {
   const {movieId} = useParams();
   const movie = movies.find((m) => m._id === movieId);
 
@@ -14,17 +14,22 @@ export const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovi
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => {
-      if (response.ok && favoriteMovies.includes(movie._id)) {
-        alert("This movie is already in your list");
-        return false;
-      } else if (response.ok) {
+      if (response.ok) {
         console.log("movie id:", movie._id);
-        setFavoriteMovies(prev => [movie, ...prev]);
         alert("This movie has been added to your list");
       } else {
         alert("Something went wrong.");
         return false;
       }
+    })
+    .then(() => {
+      fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
+        headers: {Authorization: `Bearer ${token}`}
+      })
+      .then((response) => response.json())
+      .then((user) => {
+        setUser(user);
+      })
     })
     .catch((e) => alert(e));
   };
@@ -37,12 +42,20 @@ export const MovieView = ({ movies, user, token, favoriteMovies, setFavoriteMovi
       headers: { Authorization: `Bearer ${token}`}
     })
     .then((response) => {
-      if (favoriteMovies.includes(movie._id)) {
-        setFavoriteMovies(prev => prev.filter(favoriteMovie => favoriteMovie !== movie._id));
+      if (response.ok) {
         alert("This movie has been removed from your list.");
       } else {
         alert("Could not remove the movie from your list.");
       }
+    })
+    .then(() => {
+      fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
+        headers: {Authorization: `Bearer ${token}`}
+      })
+      .then((response) => response.json())
+      .then((user) => {
+        setUser(user);
+      })
     })
     .catch((e) => alert(e));
   };

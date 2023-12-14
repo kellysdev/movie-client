@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, token, setUser, setToken, movies, favoriteMovies }) => {
+export const ProfileView = ({ user, token, setUser, setToken, movies }) => {
   const [Username, setUsername] = useState(user.Username);
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState(user.Email);
@@ -14,14 +14,10 @@ export const ProfileView = ({ user, token, setUser, setToken, movies, favoriteMo
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [validated, setValidated] = useState(false);
+  const favoriteMovieIds = user.FavoriteMovies;
 
-  const favoriteMovieObjects = favoriteMovies.map(favoriteMovie => {
-    if (favoriteMovies.length === 0) {
-      return;
-    } else {
-      const movieObject = movies.find(movie => movie._id === favoriteMovie);
-      return movieObject;
-    }
+  const favoriteMovieObjects = favoriteMovieIds.map(favoriteMovieId => {
+      return movies.find(movie => movie._id === favoriteMovieId);
   });
 
   const validate = () => {

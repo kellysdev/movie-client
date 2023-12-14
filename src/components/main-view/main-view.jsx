@@ -16,8 +16,6 @@ const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
-
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
@@ -32,22 +30,6 @@ const MainView = () => {
       setMovies(movies);
     });
   }, [token]);
-
-  useEffect(() => {
-    if (!token) return;
-
-    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${user.Username}`, {
-      headers: {Authorization: `Bearer ${token}`}
-    })
-    .then((response) => response.json())
-    .then((user) => {
-      setFavoriteMovies(user.FavoriteMovies);
-    })
-    .catch((e) => {
-      console.log(e.message);
-      alert("Could not get favorite movies.");
-    })
-  }, [favoriteMovies]);
 
   return (
     <BrowserRouter>
@@ -98,17 +80,15 @@ const MainView = () => {
                       onLoggedOut={() => {
                         setUser(null);
                         setToken(null);
-                        setFavoriteMovies([]);
                         localStorage.clear();
                       }}
                     />
                     <Col md={8}>
                       <MovieView 
                       movies={movies} 
-                      user={user} 
+                      user={user}
+                      setUser={setUser}
                       token={token}
-                      favoriteMovies={favoriteMovies}
-                      setFavoriteMovies={setFavoriteMovies}
                       />
                     </Col>
                   </>
@@ -133,7 +113,6 @@ const MainView = () => {
                         onLoggedOut={() => {
                           setUser(null);
                           setToken(null);
-                          setFavoriteMovies([]);
                           localStorage.clear();
                         }}
                       />
@@ -183,7 +162,6 @@ const MainView = () => {
                     onLoggedOut={() => {
                       setUser(null);
                       setToken(null);
-                      setFavoriteMovies([]);
                       localStorage.clear();
                     }}
                   />
@@ -191,7 +169,6 @@ const MainView = () => {
                     movies={movies} 
                     user={user} 
                     token={token}
-                    favoriteMovies={favoriteMovies}
                     setUser={setUser}
                     setToken={setToken}
                   />
