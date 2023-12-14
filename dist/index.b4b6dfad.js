@@ -48538,7 +48538,7 @@ const ProfileView = ({ user, token, setUser, setToken, movies })=>{
                                             lineNumber: 201,
                                             columnNumber: 19
                                         }, undefined)
-                                    }, favoriteMovieObjects._id, false, {
+                                    }, movie._id, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
                                         lineNumber: 200,
                                         columnNumber: 17

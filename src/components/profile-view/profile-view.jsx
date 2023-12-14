@@ -197,7 +197,7 @@ export const ProfileView = ({ user, token, setUser, setToken, movies }) => {
           <Row className="my-3">
               <h3>Favorite Movies</h3>
               {favoriteMovieObjects.map((movie) => (
-                <Col className="mb-5" key={favoriteMovieObjects._id} sm={4}>
+                <Col className="mb-5" key={movie._id} sm={4}>
                   <MovieCard 
                     movie={movie}
                    />
