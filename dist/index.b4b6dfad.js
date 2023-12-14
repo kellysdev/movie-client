@@ -48211,7 +48211,7 @@ const ProfileView = ({ user, token, setUser, setToken, movies })=>{
     const favoriteMovieIds = user.FavoriteMovies;
     const favoriteMovieObjects = favoriteMovieIds.map((favoriteMovieId)=>{
         return movies.find((movie)=>movie._id === favoriteMovieId);
-    });
+    }).filter(Boolean);
     const validate = ()=>{
         const newErrors = {};
         if (Username.includes("_")) newErrors.Username = "Your username must be alphanumeric.";

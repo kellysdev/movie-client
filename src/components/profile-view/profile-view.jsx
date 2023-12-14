@@ -18,7 +18,7 @@ export const ProfileView = ({ user, token, setUser, setToken, movies }) => {
 
   const favoriteMovieObjects = favoriteMovieIds.map(favoriteMovieId => {
       return movies.find(movie => movie._id === favoriteMovieId);
-  });
+  }).filter(Boolean);
 
   const validate = () => {
     const newErrors = {}
