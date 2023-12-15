@@ -106,6 +106,9 @@ export const ProfileView = ({ user, token, setUser, setToken, movies }) => {
     })
   };
 
+  const date = Date(user.Birthday).toString();
+  const legibleDate = date.slice(4, 16);
+
   return (
     <>
       <Row>
@@ -115,7 +118,7 @@ export const ProfileView = ({ user, token, setUser, setToken, movies }) => {
             <p>
               Username: {user.Username}<br />
               Email: {user.Email}<br />
-              Birthday: {user.Birthday}
+              Birthday: {legibleDate}
             </p>  
           </Row>
 
