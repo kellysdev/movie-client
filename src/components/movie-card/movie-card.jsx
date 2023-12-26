@@ -7,8 +7,8 @@ export const MovieCard = ({ movie }) => {
     <Link to={`/movies/${encodeURIComponent(movie._id)}`} className="me-2 mb-2 text-decoration-none">
     <Card className="h-100">
       <Card.Img variant="top" src={movie.ImagePath} className="moviecard-image"/>
-      <Card.Title>{movie.Title}</Card.Title>
-      <CardBody className="d-flex flex-column mt-n3">      
+      <CardBody className="d-flex flex-column mt-n3">
+        <Card.Title>{movie.Title}</Card.Title>
         <p className="fs-6 text-muted text-end mt-auto">{movie.Genre.Name}</p>
 
         {/* <Link to={`/movies/${encodeURIComponent(movie._id)}`} className="me-2 mb-2 ml-x">
