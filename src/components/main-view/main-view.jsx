@@ -11,9 +11,9 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { SearchBar } from "../search-bar/search-bar";
 
 const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
+  // const storedUsername = localStorage.getItem("username");
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [user, setUser] = useState(storedToken ? {} : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -58,7 +58,11 @@ const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <LoginView onLoggedIn={(user, token) => {setUser(user); setToken(token)}} />
+                    <LoginView 
+                      onLoggedIn={(userData, token) => {
+                        setUser(userData); setToken(token)
+                      }}
+                     />
                   </Col>
                 )}
               </>

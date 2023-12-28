@@ -27202,9 +27202,9 @@ var _searchBar = require("../search-bar/search-bar");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    // const storedUsername = localStorage.getItem("username");
     const storedToken = localStorage.getItem("token");
-    const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
+    const [user, setUser] = (0, _react.useState)(storedToken ? {} : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [movies, setMovies] = (0, _react.useState)([]);
     const [searchInput, setSearchInput] = (0, _react.useState)("");
@@ -27249,8 +27249,8 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                 md: 5,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
-                                    onLoggedIn: (user, token)=>{
-                                        setUser(user);
+                                    onLoggedIn: (userData, token)=>{
+                                        setUser(userData);
                                         setToken(token);
                                     }
                                 }, void 0, false, void 0, void 0)
@@ -27293,7 +27293,7 @@ const MainView = ()=>{
                         }, void 0, false)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 68,
+                        lineNumber: 72,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27345,7 +27345,7 @@ const MainView = ()=>{
                         }, void 0, false)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 100,
+                        lineNumber: 104,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27376,7 +27376,7 @@ const MainView = ()=>{
                         }, void 0, false)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 152,
+                        lineNumber: 156,
                         columnNumber: 11
                     }, undefined)
                 ]
@@ -27396,7 +27396,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "XK4EsKY4TTv1W/L3cD1uEsb9i0c=");
+_s(MainView, "Lu1Xj2vxONYxh1pMjyiCoEsO25I=");
 _c = MainView;
 exports.default = MainView;
 var _c;
@@ -47709,7 +47709,6 @@ const LoginView = ({ onLoggedIn })=>{
     const [Username, setUsername] = (0, _react.useState)("");
     const [Password, setPassword] = (0, _react.useState)("");
     const handleSubmit = (event)=>{
-        //prevent submit button reloading the page
         event.preventDefault();
         const data = {
             Username: Username,
@@ -47724,8 +47723,9 @@ const LoginView = ({ onLoggedIn })=>{
         }).then((response)=>response.json()).then((data)=>{
             console.log("Login response: ", data);
             if (data.user) {
-                localStorage.setItem("user", JSON.stringify(data.user));
+                // localStorage.setItem("username", JSON.parse(JSON.stringify(data.user.Username)));
                 localStorage.setItem("token", data.token);
+                let userData = data.user;
                 onLoggedIn(data.user, data.token);
             } else alert("No such user");
         }).catch((e)=>{
