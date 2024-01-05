@@ -11,9 +11,11 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { SearchBar } from "../search-bar/search-bar";
 
 const MainView = () => {
-  // const storedUsername = localStorage.getItem("username");
+  // const storedUser = localStorage.getItem("user");
+  const storedUsername = localStorage.getItem("username");
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedToken ? {} : null);
+  console.log(user);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -26,7 +28,7 @@ const MainView = () => {
     })
     .then((response) => response.json())
     .then((movies) => {
-      console.log(movies);
+      // console.log(movies);
       setMovies(movies);
     });
   }, [token]);
