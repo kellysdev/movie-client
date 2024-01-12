@@ -11,11 +11,9 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { SearchBar } from "../search-bar/search-bar";
 
 const MainView = () => {
-  // const storedUser = localStorage.getItem("user");
-  const storedUsername = localStorage.getItem("username");
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedToken ? {} : null);
-  console.log(user);
+  const storedUser = JSON.parse(JSON.stringify(userData));
+  const [user, setUser] = useState(storedToken ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -32,6 +30,28 @@ const MainView = () => {
       setMovies(movies);
     });
   }, [token]);
+
+  useEffect(() => {
+    if (!token) return;
+
+    const storedUsername = localStorage.getItem("username");
+    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${storedUsername}`, {
+      headers: {Authorization: `Bearer ${token}`}
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        const userData = data;
+        // setUser(storedUser);
+        return userData;
+      } else {
+        alert("Something went wrong.");
+      }
+    })
+    .catch((e) => {
+      alert("Error:" + e);
+    });
+  }, [user]);
 
   return (
     <BrowserRouter>
@@ -61,8 +81,8 @@ const MainView = () => {
                 ) : (
                   <Col md={5}>
                     <LoginView 
-                      onLoggedIn={(userData, token) => {
-                        setUser(userData); setToken(token)
+                      onLoggedIn={(token) => {
+                        setToken(token);
                       }}
                      />
                   </Col>
