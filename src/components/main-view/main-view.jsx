@@ -58,7 +58,7 @@ const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <LoginView 
+                    <LoginView
                       onLoggedIn={(userData, token) => {
                         setUser(userData); setToken(token)
                       }}
@@ -142,7 +142,7 @@ const MainView = () => {
                           }
                         }).map((movie) => (
                           <Col className="mb-5" key={movie._id} xs={3}>
-                            <MovieCard movie={movie} />
+                            <MovieCard movie={movie} user={user} />
                           </Col>
                         ))
                       }
