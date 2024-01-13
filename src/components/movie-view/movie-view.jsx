@@ -1,10 +1,16 @@
 import React from "react";
-import { Button, Row, Col } from "react-bootstrap";
+import { Button, Row, Col, Container } from "react-bootstrap";
 import { useParams } from "react-router";
+import { MovieCard } from "../movie-card/movie-card";
 
 export const MovieView = ({ movies, user, setUser, token }) => {
   const {movieId} = useParams();
   const movie = movies.find((m) => m._id === movieId);
+
+  const selectedMovie = movies.find(movie => movie._id === movieId);
+  const similarMovies = movies.filter(movie => {
+    return movie._id !== movieId && movie.Genre.Name === selectedMovie.Genre.Name;
+  });
 
   const handleAddFavorite = (event) => {
     event.preventDefault();
@@ -60,7 +66,7 @@ export const MovieView = ({ movies, user, setUser, token }) => {
   };
 
   return (
-    <>
+    <Container className="fluid">
     <Row className="justify-content-center">
       <Col className="col-6">
         <Row>
@@ -92,6 +98,22 @@ export const MovieView = ({ movies, user, setUser, token }) => {
         <img className="movieview-image" src={movie.ImagePath} />
       </Col>
     </Row>
-    </>
+    <Row className="mt-5">
+      <Col>
+          <Row>
+            <h4>Similar Movies</h4>
+          </Row>
+          <Row>
+            {similarMovies.map((movie) => (
+                <Col className="mb-5" key={movie._id} sm={4}>
+                  <MovieCard 
+                    movie={movie} user={user}
+                   />
+                </Col>
+              ))}
+          </Row>
+      </Col>
+    </Row>
+    </Container>
   );
 };
