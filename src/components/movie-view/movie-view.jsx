@@ -15,7 +15,6 @@ export const MovieView = ({ movies, user, setUser, token }) => {
     })
     .then((response) => {
       if (response.ok) {
-        console.log("movie id:", movie._id);
         alert("This movie has been added to your list");
       } else {
         alert("Something went wrong.");

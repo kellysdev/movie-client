@@ -44,7 +44,6 @@ export const LoginView = ({ onLoggedIn }) => {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Login response: ", data);
       if (data.user) {
         localStorage.setItem("username", data.user.Username);
         localStorage.setItem("token", data.token);

@@ -26,7 +26,6 @@ const MainView = () => {
     })
     .then((response) => response.json())
     .then((movies) => {
-      console.log(movies);
       setMovies(movies);
     });
   }, [token]);
@@ -125,7 +124,6 @@ const MainView = () => {
                       <Col className="my-4 mx-auto col-5 col-md-4 justify-content-center" >
                         <SearchBar
                           onSearchTermChange={(searchInput) => {
-                            console.log(searchInput);
                             setSearchInput(searchInput);
                           }}
                           searchInput={searchInput}
