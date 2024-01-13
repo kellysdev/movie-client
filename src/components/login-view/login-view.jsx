@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -9,6 +9,23 @@ import { Logo } from "../logo/logo.jsx";
 export const LoginView = ({ onLoggedIn }) => {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
+
+    if (!token || !storedUsername) return;
+
+    fetch(`https://popopolis-f7a904c7cad0.herokuapp.com/users/${storedUsername}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"  }
+    })
+    .then(response => response.json())
+    .then(data => {
+      onLoggedIn(data, token);
+    });
+  }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,9 +46,8 @@ export const LoginView = ({ onLoggedIn }) => {
     .then((data) => {
       console.log("Login response: ", data);
       if (data.user) {
-        // localStorage.setItem("username", JSON.parse(JSON.stringify(data.user.Username)));
+        localStorage.setItem("username", data.user.Username);
         localStorage.setItem("token", data.token);
-        let userData = data.user;
         onLoggedIn(data.user, data.token);
       } else {
         alert("No such user");

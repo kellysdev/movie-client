@@ -13,7 +13,7 @@ import { SearchBar } from "../search-bar/search-bar";
 const MainView = () => {
   // const storedUsername = localStorage.getItem("username");
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedToken ? {} : null);
+  const [user, setUser] = useState(null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
