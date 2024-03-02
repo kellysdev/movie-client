@@ -57,6 +57,36 @@ export const LoginView = ({ onLoggedIn }) => {
     })
   };
 
+  const guestLogin = (event) => {
+    event.preventDefault();
+
+    const data = {
+      Username: "guest",
+      Password: "guest"
+    }
+
+    fetch("https://popopolis-f7a904c7cad0.herokuapp.com/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.user) {
+        localStorage.setItem("username", data.user.Username);
+        localStorage.setItem("token", data.token);
+        onLoggedIn(data.user, data.token);
+      } else {
+        alert("No such user");
+      }
+    })
+    .catch((e) => {
+      alert("Something went wrong");
+    })
+  };
+
   return (
     <>
       <Logo />
@@ -91,6 +121,9 @@ export const LoginView = ({ onLoggedIn }) => {
           <Link className="welcome-links mt-3" to="/signup">
             Don't have an account?
           </Link>
+        </Container>
+        <Container className="d-grid">
+          <Button onClick={guestLogin} className="btn-link welcome-links guest-login">Login as a Guest</Button>
         </Container>
 
       </Form>
