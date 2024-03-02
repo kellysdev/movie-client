@@ -229,7 +229,7 @@ export const ProfileView = ({ user, token, setUser, setToken, movies }) => {
         <Modal.Footer>
           <Button 
           onClick={handleDeregister}
-          variant="danger">
+          variant="danger" disabled={conditionalDisable}>
             Deregister
           </Button>
           <Button onClick={handleCloseModal} variant="warning">Cancel</Button>
