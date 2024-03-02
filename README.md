@@ -1,6 +1,6 @@
 # PopOpolis
 
-The client-side of a CRUD movie application built with React.js.  It supports server-side code for a REST API and database built with Node.js, Express.js, and MongoDB.
+The client-side of a CRUD movie application built with React and Bootstrap.  It supports server-side code for a REST API and database built with Node.js, Express.js, and MongoDB.
 
 This is a single-page, responsive app with routing, several interface views, and a polished user experience.
 
@@ -24,6 +24,14 @@ This is a single-page, responsive app with routing, several interface views, and
     "react-router": "^6.16.0",
     "react-router-dom": "^6.16.0"
 
+## Getting Started
+
+To get a local copy up and running, follow these steps:
+
+1. Clone this repository: `git clone https://github.com/kellysdev/movie-client.git`
+2. From the working directory, install the app's dependencies: `npm i`
+3. Start the project with `npx parcel src/index.html`
+
 ## Link
 
 [The live app is hosted on Netlify, linked here.](https://popopolis.netlify.app/)
@@ -34,5 +42,4 @@ This is a single-page, responsive app with routing, several interface views, and
 
 - [ ] Allow users to share a movie
 - [ ] Allow users to sort movies based on different criteria
-- [ ] Display a list of related or similar movies in MovieView
 - [ ] Allow users to create a "To Watch" list in addition to their "Favorite Movies" list
