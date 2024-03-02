@@ -36,7 +36,7 @@ To get a local copy up and running, follow these steps:
 
 [The live app is hosted on Netlify, linked here.](https://popopolis.netlify.app/)
 
-[You can also find the server-side respository here](https://github.com/lladysmall/movie-api)
+[You can also find the server-side respository here](https://github.com/kellysdev/movie-api)
 
 ## Future Updates
 
