@@ -109,6 +109,11 @@ export const ProfileView = ({ user, token, setUser, setToken, movies }) => {
   const date = user.Birthday.toString();
   const legibleDate = date.slice(0, 10);
 
+  // conditionally disable and change placeholder text if user is logged in as guest
+  const usernamePlaceholder = user.Username === "guest" ? "Cannot edit guest" : "Username";
+  const passwordPlaceholder = user.Username === "guest" ? "Cannot edit guest" : "Password";
+  const conditionalDisable = user.Username === "guest" ? true : false;
+
   return (
     <>
       <Row>
@@ -132,11 +137,12 @@ export const ProfileView = ({ user, token, setUser, setToken, movies }) => {
                   <Form.Group>
                     <Form.Control className="my-3"
                       type="text"
-                      placeholder="Username"
+                      placeholder={usernamePlaceholder}
                       onChange={(e) => setUsername( e.target.value)}
                       required
                       minLength="3"
                       isInvalid={errors.Username}
+                      disabled={conditionalDisable}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.Username}
@@ -146,10 +152,11 @@ export const ProfileView = ({ user, token, setUser, setToken, movies }) => {
                   <Form.Group>
                     <Form.Control className="my-3"
                       type="password"
-                      placeholder="Password"
+                      placeholder={passwordPlaceholder}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       isInvalid={errors.Password}
+                      disabled={conditionalDisable}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.Password}
