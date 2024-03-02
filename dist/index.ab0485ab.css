@@ -13356,6 +13356,10 @@ textarea.form-control-lg {
   text-decoration: none;
 }
 
+.guest-login:hover {
+  background-color: #0000;
+}
+
 .welcome-buttons {
   text-align: right;
 }
